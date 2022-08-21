@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MyReferralsActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_referral_amt"
+        android:layout_width="380dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/ref_bal_tot"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="152dp"
+                android:layout_marginBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Referral Amount"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/ref_bal_tot"
+                android:layout_width="210dp"
+                android:layout_height="44dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="-5dp"
+                android:layout_marginBottom="12dp"
+                android:layout_toStartOf="@+id/btn_withdraw"
+                android:text="1987"
+                android:textAlignment="viewStart"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/btn_withdraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/btn_round"
+                android:text="Withdraw" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_deposited_amt"
+        android:layout_width="380dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_referral_amt"
+        app:layout_constraintVertical_bias="0.033">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/dep_amount"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/amount_dep_total"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="151dp"
+                android:layout_marginBottom="6dp"
+                android:paddingTop="5dp"
+                android:text="Deposited Amount"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/amount_dep_total"
+                android:layout_width="210dp"
+                android:layout_height="44dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="13dp"
+                android:layout_toStartOf="@+id/btn_deposit"
+                android:text="15432"
+                android:textAlignment="viewStart"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/btn_deposit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/btn_round"
+                android:text="Deposit" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_deposited_amt" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/purple_700"
+        android:gravity="center"
+        android:text="Transactions"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        tools:layout_editor_absoluteX="-5dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_transaction"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="280dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.928" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_myreferrals"
+            android:title="My Referrals" />
+        <item
+            android:id="@+id/nav_term_view"
+            android:title="Team View" />
+        <item
+            android:id="@+id/nav_our_banks"
+            android:title="Saved Bank Accounts" />
+        <item
+            android:id="@+id/nav_new_reg"
+            android:title="New Registration" />
+
+
+    <item android:title="Profile">
+        <menu>
+            <item
+                android:id="@+id/nav_change_pass"
+                android:title="Change Password" />
+            <item
+                android:id="@+id/nav_view_edit_profile"
+                android:title="View/Edit Profile" />
+        </menu>
+    </item>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_aboutus"
+                android:title="About us" />
+            <item
+                android:id="@+id/nav_rate"
+                android:title="Rate us" />
+            <item
+                android:id="@+id/nav_version"
+                android:title="Version" />
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+</menu>
