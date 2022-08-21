@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent in = new Intent(LoginActivity.this, RegisterActivity.class);
+                in.putExtra("req_mode","login_page");
                 startActivity(in);
             }
         });

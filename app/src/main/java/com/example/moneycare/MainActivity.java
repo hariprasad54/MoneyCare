@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_new_reg:
                         Toast.makeText(MainActivity.this, "New Registration is Clicked",Toast.LENGTH_SHORT).show();
                         Intent regIn = new Intent(getApplicationContext(), RegisterActivity.class);
+                        regIn.putExtra("req_mode","home_page");
                         startActivity(regIn);
                         finish();
                         break;

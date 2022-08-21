@@ -95,4 +95,22 @@ public class RegisterActivity extends AppCompatActivity {
 
         return stat;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent in = getIntent();
+        String reqType = in.getStringExtra("req_from");
+        if (reqType.equals("home_page")) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+        else if(reqType.equals("login_page")){
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+    }
 }
