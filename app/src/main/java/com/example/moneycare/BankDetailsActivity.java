@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.moneycare.adapters.BankAdapter;
 import com.example.moneycare.model.BankAccount;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,7 @@ public class BankDetailsActivity extends AppCompatActivity {
     private List<BankAccount> bankAccountList;
     private BankAdapter adapter;
     private TextView accounts;
+    private ExtendedFloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,16 @@ public class BankDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bank_details);
 
         accounts = findViewById(R.id.your_accounts);
+        fab = findViewById(R.id.btn_add_bankac);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addAccountIn = new Intent(getApplicationContext(),AddBankAccountActivity.class);
+                startActivity(addAccountIn);
+                finish();
+            }
+        });
+
 
         bankAccountList = new ArrayList<>();
         bankAccountList.add(new BankAccount("CICIC BANK","IFSC00001","1234567890"));
