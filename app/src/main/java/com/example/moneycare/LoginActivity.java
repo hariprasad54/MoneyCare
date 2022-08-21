@@ -39,8 +39,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 strEmail = email.getText().toString();
                 pass = password.getText().toString();
-                if(validateDetails(strEmail,pass)) {
-                    if (strEmail.equals("test@test.com") && pass.equals("pass123")){
+                //if(validateDetails(strEmail,pass)) {
+                if(true) {
+                    //if (strEmail.equals("test@test.com") && pass.equals("pass123")){
+                    if (true){
                         Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
                         Intent in = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(in);

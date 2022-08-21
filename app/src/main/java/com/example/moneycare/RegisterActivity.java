@@ -9,12 +9,15 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    public EditText fullName,email,mobile,pass,repass,refCode;
+    private EditText fullName,email,mobile,pass,repass,refCode;
     private Button btnReg,btnLogMove;
+    private String reqType;
+    private TextView swipeLeft;
 
     private  String strFullName,strEmail,strMobile,strPass,strRePass,strRefCode;
     @Override
@@ -22,14 +25,24 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        Intent in = getIntent();
+        reqType = in.getStringExtra("req_mode");
+
         fullName = findViewById(R.id.et_name);
         email = findViewById(R.id.et_emailreg);
         mobile = findViewById(R.id.et_phone);
         pass = findViewById(R.id.et_passwordreg);
         repass = findViewById(R.id.et_repassword);
+        refCode = findViewById(R.id.et_ref_code);
         btnReg = findViewById(R.id.btn_register);
         btnLogMove = findViewById(R.id.btnLogMove);
-        refCode = findViewById(R.id.et_ref_code);
+        swipeLeft = findViewById(R.id.swipeLeft);
+
+        //checking the request
+        if(reqType.equals("home_page")){
+            btnLogMove.setVisibility(View.INVISIBLE);
+            swipeLeft.setVisibility(View.INVISIBLE);
+        }
 
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(in);
             }
         });
+
+
 
     }
 
@@ -100,8 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent in = getIntent();
-        String reqType = in.getStringExtra("req_from");
+
         if (reqType.equals("home_page")) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
