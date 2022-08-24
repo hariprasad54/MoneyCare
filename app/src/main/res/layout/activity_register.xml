@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/reg_page"
     tools:context=".RegisterActivity">
 
     <TextView
@@ -96,30 +100,34 @@
         android:background="@drawable/et_custom"
         android:textSize="15sp" />
 
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/btn_custom"
+        android:text="@string/register"
+        android:textColor="@android:color/white" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_weight="2">
 
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/btnLogMove"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/btn_custom"
-            android:text="@string/register"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btnLogMove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back to Login"
             android:layout_above="@id/swipeLeft"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_custom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Back to Login" />
 
         <TextView
             android:id="@+id/swipeLeft"
@@ -127,10 +135,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:text="@string/swipe_right_for_login"
             android:textSize="15sp" />
 
     </RelativeLayout>
 
 </LinearLayout>
+</ScrollView>

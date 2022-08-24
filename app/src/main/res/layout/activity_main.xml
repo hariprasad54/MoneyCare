@@ -30,12 +30,11 @@
                     android:id="@+id/topAppBar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:title="MoneyCare"
-                    app:titleTextColor="@color/white"
-                    app:navigationIcon="@drawable/ic_baseline_menu_24"
-                    android:background="@color/purple_700"
+                    android:background="@color/design_default_color_primary"
                     app:layout_collapseMode="pin"
-                    />
+                    app:navigationIcon="@drawable/ic_baseline_menu_24"
+                    app:title="MoneyCare"
+                    app:titleTextColor="@color/white" />
 
             </com.google.android.material.appbar.AppBarLayout>
 

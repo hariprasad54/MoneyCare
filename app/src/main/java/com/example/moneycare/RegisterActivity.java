@@ -9,6 +9,8 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnReg = findViewById(R.id.btn_register);
         btnLogMove = findViewById(R.id.btnLogMove);
         swipeLeft = findViewById(R.id.swipeLeft);
+
 
         //checking the request
         if(reqType.equals("home_page")){

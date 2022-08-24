@@ -23,7 +23,9 @@
             android:exported="false" />
         <activity
             android:name=".EditBankAccountActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Edit Bank Account"
+            android:theme="@style/Theme.MoneyCare.WithActionBar"/>
         <activity
             android:name=".AddBankAccountActivity"
             android:exported="false"

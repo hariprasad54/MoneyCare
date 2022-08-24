@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.transition.MaterialSharedAxis;
-
 public class AddBankAccountActivity extends AppCompatActivity {
 
     private EditText bName,bAcNumber,bReAcNumber,bIfscCode;
@@ -33,7 +31,7 @@ public class AddBankAccountActivity extends AppCompatActivity {
         bAcNumber = findViewById(R.id.et_acNum_add_account);
         bReAcNumber = findViewById(R.id.et_re_enter_account);
         bIfscCode = findViewById(R.id.et_ifsc_code_in_add_account);
-        btnAddAccount = findViewById(R.id.btn_add_account);
+        btnAddAccount = findViewById(R.id.btn_save_details);
         saveStaus = findViewById(R.id.status_add_account);
 
         btnAddAccount.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +62,7 @@ public class AddBankAccountActivity extends AppCompatActivity {
 
         boolean stat = true;
         if (isEmpty(bankName) ||isEmpty(acNumber) || isEmpty(reAcNumber) || isEmpty(ifscCode)) {
-            Toast t = Toast.makeText(this, "All Fields Mandatory to Register!", Toast.LENGTH_LONG);
+            Toast t = Toast.makeText(this, "All Fields Mandatory!!", Toast.LENGTH_LONG);
             t.show();
             stat = false;
         }
@@ -76,7 +74,7 @@ public class AddBankAccountActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, BankDetailsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
@@ -87,7 +85,7 @@ public class AddBankAccountActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, BankDetailsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
