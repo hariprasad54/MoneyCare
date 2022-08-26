@@ -2,49 +2,65 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
+        <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:title="Home" />
+            android:title="Home"
+            android:icon="@drawable/ic_baseline_home_24"/>
         <item
             android:id="@+id/nav_myreferrals"
-            android:title="My Referrals" />
+            android:title="My Referrals"
+            android:icon="@drawable/ic_baseline_3p_24"/>
         <item
             android:id="@+id/nav_term_view"
-            android:title="Team View" />
+            android:title="Team View"
+            android:icon="@drawable/ic_baseline_people_24"/>
         <item
             android:id="@+id/nav_our_banks"
-            android:title="Saved Bank Accounts" />
+            android:title="Saved Bank Accounts"
+            android:icon="@drawable/ic_baseline_account_balance_24"/>
         <item
             android:id="@+id/nav_new_reg"
-            android:title="New Registration" />
+            android:title="New Registration"
+            android:icon="@drawable/ic_baseline_person_add_24"/>
+        </group>
 
 
     <item android:title="Profile">
         <menu>
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_change_pass"
-                android:title="Change Password" />
+                android:title="Change Password"
+                android:icon="@drawable/ic_baseline_password_24"/>
             <item
                 android:id="@+id/nav_view_edit_profile"
-                android:title="View/Edit Profile" />
+                android:title="View/Edit Profile"
+                android:icon="@drawable/ic_baseline_account_circle_24"/>
+            </group>
         </menu>
     </item>
 
     <item android:title="Communicate">
         <menu>
+            <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_aboutus"
-                android:title="About us" />
+                android:title="About us"
+                android:icon="@drawable/ic_baseline_info_24"/>
             <item
                 android:id="@+id/nav_rate"
-                android:title="Rate us" />
+                android:title="Rate us"
+                android:icon="@drawable/ic_baseline_star_rate_24"/>
             <item
                 android:id="@+id/nav_version"
-                android:title="Version" />
+                android:title="Version"
+                android:icon="@drawable/ic_baseline_perm_device_information_24"/>
             <item
                 android:id="@+id/nav_logout"
-                android:title="Logout" />
+                android:title="Logout"
+                android:icon="@drawable/ic_baseline_logout_24"/>
+            </group>
         </menu>
     </item>
 </menu>

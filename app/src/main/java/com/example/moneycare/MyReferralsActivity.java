@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.example.moneycare.adapters.TeamAdapter;
 import com.example.moneycare.adapters.TransactionAdapter;
 import com.example.moneycare.model.Transaction;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class MyReferralsActivity extends AppCompatActivity {
     private TextView refBal,depBal;
     private Button btnWithdraw,btnDeposit;
     private TransactionAdapter adapter;
-    private List<Transaction> transactionList;
+    public List<Transaction> transactionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,22 @@ public class MyReferralsActivity extends AppCompatActivity {
         transactionList.add(new Transaction("TrnID: TRN101010111022","EMAIL: ghi@abc.com","Date: 21/08/2022","32999"));
         transactionList.add(new Transaction("TrnID: TRN100010001321","EMAIL: jkl@abc.com","Date: 21/08/2022","1345999"));
         transactionList.add(new Transaction("TrnID: TRN100010043213","EMAIL: mno@abc.com","Date: 21/08/2022","999"));
+
+        btnDeposit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent depositIn = new Intent(getApplicationContext(),AmountDepositActivity.class);
+                startActivity(depositIn);
+            }
+        });
+
+        btnWithdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent withdrawIn = new Intent(getApplicationContext(),AmountWithdrawActivity.class);
+                startActivity(withdrawIn);
+            }
+        });
 
         initRecyclerView();
 
