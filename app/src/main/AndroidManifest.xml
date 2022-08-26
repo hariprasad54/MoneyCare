@@ -16,10 +16,20 @@
         android:theme="@style/Theme.MoneyCare"
         tools:targetApi="31">
         <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MoneyCare.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".AmountDepositActivity"
             android:exported="false"
             android:label="Amount Deposit"
-            android:theme="@style/Theme.MoneyCare.WithActionBar"/>
+            android:theme="@style/Theme.MoneyCare.WithActionBar" />
         <activity
             android:name=".AmountWithdrawActivity"
             android:exported="false" />
@@ -27,13 +37,12 @@
             android:name=".EditBankAccountActivity"
             android:exported="false"
             android:label="Edit Bank Account"
-            android:theme="@style/Theme.MoneyCare.WithActionBar"/>
+            android:theme="@style/Theme.MoneyCare.WithActionBar" />
         <activity
             android:name=".AddBankAccountActivity"
             android:exported="false"
             android:label="Add Bank Account"
-            android:theme="@style/Theme.MoneyCare.WithActionBar"
-            />
+            android:theme="@style/Theme.MoneyCare.WithActionBar" />
         <activity
             android:name=".MyReferralsActivity"
             android:exported="false"
@@ -69,19 +78,13 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:noHistory="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true"
+            android:noHistory="true">
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.MoneyCare.NoActionBar"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:theme="@style/Theme.MoneyCare.NoActionBar"></activity>
     </application>
 
 </manifest>
