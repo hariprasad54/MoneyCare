@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/white"
+    android:clipToPadding="false">
+
+    <TextView
+        android:id="@+id/item_trn_id_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="53dp"
+        android:paddingStart="15dp"
+        android:text="Transaction ID: TRN1000100011"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_trn_email_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="29dp"
+        android:paddingStart="15dp"
+        android:text="Email: abc@abc.com"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/item_trn_phone_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:paddingStart="15dp"
+        android:text="Phone Number"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="15sp" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="77dp"
+        android:layout_marginBottom="0dp"
+        android:background="?android:attr/listDivider"
+        android:paddingStart="0dp" />
+
+</RelativeLayout>

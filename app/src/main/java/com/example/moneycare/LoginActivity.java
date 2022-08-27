@@ -1,5 +1,6 @@
 package com.example.moneycare;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -10,13 +11,16 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,11 +52,18 @@ public class LoginActivity extends AppCompatActivity {
                 pass = password.getText().toString();
                 //if(validateDetails(strEmail,pass)) {
                 if(true) {
-                    //if (strEmail.equals("test@test.com") && pass.equals("pass123")){
-                    if (true){
+                    if (strEmail.equals("test@test.com") && pass.equals("pass123")){
+                    //if (true){
                         Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
                         Intent in = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(in);
+                    }
+                    else if (strEmail.equals("admin@test.com") && pass.equals("pass123")){
+                        //if (true){
+                        Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
+                        Intent in = new Intent(LoginActivity.this,AdminApprovalSuperActivity.class);
+                        startActivity(in);
+                        finish();
                     }
 
                 }
@@ -69,27 +80,34 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         forgotPass.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
-                final EditText etEmail = new EditText(getApplicationContext());
-                alert.setMessage("Enter Your Email");
+                LayoutInflater layoutInflater = getLayoutInflater();
+                final View viewDialog = layoutInflater.inflate(R.layout.email_dialog, null);
+                AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
                 alert.setTitle("Enter Email");
+                alert.setView(viewDialog);
 
-                alert.setView(etEmail);
+                EditText etEmail = viewDialog.findViewById(R.id.et_email_dialog);
+
 
                 alert.setPositiveButton("Next", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                         String strEmailFromD = etEmail.getText().toString();
-                        if (!(isEmail(strEmailFromD))&& isEmpty(strEmailFromD)){
-                            Toast.makeText(getApplicationContext(),"Invalid Email or Email Empty",Toast.LENGTH_LONG).show();
+                        if (!(isEmail(strEmailFromD))|| isEmpty(strEmailFromD)){
+                              Toast.makeText(getApplicationContext(),"Invalid Email or Email Empty",Toast.LENGTH_LONG).show();
                             etEmail.setError("Invalid Email");
+
                         }
                         else {
                             //check for the email in DB
                             //if exists then otp validation
-
+                            Intent forgotPassIn = new Intent(LoginActivity.this,OtpValidationActivity.class);
+                            forgotPassIn.putExtra("from","change_pass");
+                            startActivity(forgotPassIn);
+                            finish();
                             //if not exists uncomment below line
                             //etEmail.setError("Email Not found")
                         }
@@ -100,10 +118,11 @@ public class LoginActivity extends AppCompatActivity {
                 alert.setNegativeButton("Back", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         // what ever you want to do with No option.
+                        dialog.dismiss();
                     }
                 });
 
-                alert.show();
+                alert.create().show();
             }
         });
 

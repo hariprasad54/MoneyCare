@@ -16,6 +16,16 @@
         android:theme="@style/Theme.MoneyCare"
         tools:targetApi="31">
         <activity
+            android:name=".AdminApprovalSubActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MoneyCare.WithActionBar"
+            android:label="Sub List"/>
+        <activity
+            android:name=".AdminApprovalSuperActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MoneyCare.WithActionBar"
+            android:label="Pending Approval List"/>
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.MoneyCare.NoActionBar">
@@ -79,8 +89,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:noHistory="true">
-        </activity>
+            android:noHistory="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
