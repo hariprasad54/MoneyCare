@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                         else {
                             //check for the email in DB
                             //if exists then otp validation
-                            Intent
+
                             //if not exists uncomment below line
                             //etEmail.setError("Email Not found")
                         }
