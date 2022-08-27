@@ -84,7 +84,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MoneyCare.NoActionBar"></activity>
+            android:theme="@style/Theme.MoneyCare.NoActionBar" />
     </application>
 
 </manifest>

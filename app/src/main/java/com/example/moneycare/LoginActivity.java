@@ -11,11 +11,13 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email,password;
     private Button btnLogin,btnRegMove;
+    private TextView forgotPass;
 
     private String strEmail,pass;
 
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
         btnRegMove = findViewById(R.id.regMove);
+        forgotPass = findViewById(R.id.forgot_pass);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +65,45 @@ public class LoginActivity extends AppCompatActivity {
                 Intent in = new Intent(LoginActivity.this, RegisterActivity.class);
                 in.putExtra("req_mode","login_page");
                 startActivity(in);
+            }
+        });
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getApplicationContext());
+                final EditText etEmail = new EditText(getApplicationContext());
+                alert.setMessage("Enter Your Email");
+                alert.setTitle("Enter Email");
+
+                alert.setView(etEmail);
+
+                alert.setPositiveButton("Next", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                        String strEmailFromD = etEmail.getText().toString();
+                        if (!(isEmail(strEmailFromD))&& isEmpty(strEmailFromD)){
+                            Toast.makeText(getApplicationContext(),"Invalid Email or Email Empty",Toast.LENGTH_LONG).show();
+                            etEmail.setError("Invalid Email");
+                        }
+                        else {
+                            //check for the email in DB
+                            //if exists then otp validation
+                            Intent
+                            //if not exists uncomment below line
+                            //etEmail.setError("Email Not found")
+                        }
+
+                    }
+                });
+
+                alert.setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // what ever you want to do with No option.
+                    }
+                });
+
+                alert.show();
             }
         });
 
