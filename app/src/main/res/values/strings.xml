@@ -31,4 +31,6 @@
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
     <string name="bank_name">Bank Name</string>
+    <string name="str_open">Open</string>
+    <string name="str_close">Close</string>
 </resources>

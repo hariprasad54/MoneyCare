@@ -12,7 +12,7 @@
         android:src="@drawable/ic_baseline_account_circle_24" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/emailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/profilepic"
@@ -25,7 +25,7 @@
 
 
     <View
-        android:layout_below="@+id/name"
+        android:layout_below="@+id/emailUser"
         android:layout_width="match_parent"
         style="@style/line"/>
 </RelativeLayout>

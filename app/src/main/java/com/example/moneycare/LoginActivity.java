@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
-        btnRegMove = findViewById(R.id.regMove);
+        //btnRegMove = findViewById(R.id.regMove);
         forgotPass = findViewById(R.id.forgot_pass);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +56,14 @@ public class LoginActivity extends AppCompatActivity {
                     //if (true){
                         Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
                         Intent in = new Intent(LoginActivity.this,MainActivity.class);
+                        in.putExtra("userEmail",strEmail);
                         startActivity(in);
                     }
                     else if (strEmail.equals("admin@test.com") && pass.equals("pass123")){
                         //if (true){
                         Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
                         Intent in = new Intent(LoginActivity.this,AdminApprovalSuperActivity.class);
+                        in.putExtra("userEmail",strEmail);
                         startActivity(in);
                         finish();
                     }
@@ -70,14 +72,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnRegMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent in = new Intent(LoginActivity.this, RegisterActivity.class);
-                in.putExtra("req_mode","login_page");
-                startActivity(in);
-            }
-        });
 
         forgotPass.setOnClickListener(new View.OnClickListener() {
 

@@ -66,6 +66,7 @@ public class AdminApprovalSubActivity extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 Intent intent = new Intent(this, AdminApprovalSuperActivity.class);
+                intent.putExtra("userEmail","admin@test.com");
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
@@ -76,6 +77,7 @@ public class AdminApprovalSubActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this, AdminApprovalSuperActivity.class);
+        intent.putExtra("userEmail","admin@test.com");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

@@ -13,14 +13,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Locale;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainActivity extends AppCompatActivity {
+    private String userEmail;
+    private TextView tvEmail;
+    private CircleImageView profilePic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +39,16 @@ public class MainActivity extends AppCompatActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
-        toolbar.inflateMenu(R.menu.menu_admin);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
+        //toolbar.inflateMenu(R.menu.menu_admin);
 
-                if (item.getItemId() == R.id.pending_req_sup){
-                    Intent adminIn = new Intent(MainActivity.this,AdminApprovalSuperActivity.class);
-                    startActivity(adminIn);
-                }
+        Intent loginDetails = getIntent();
+        userEmail = loginDetails.getStringExtra("userEmail");
 
-                return false;
-            }
-        });
+        View nhView = navigationView.getHeaderView(0);
+        tvEmail = nhView.findViewById(R.id.emailUser);
+        tvEmail.setText(userEmail);
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
 
 
     }
