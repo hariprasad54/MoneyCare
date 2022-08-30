@@ -1,13 +1,17 @@
 package com.example.moneycare.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.example.moneycare.AprovalOrRejectedActivity;
 import com.example.moneycare.R;
 import com.example.moneycare.model.MemberSub;
 
@@ -43,10 +47,11 @@ public class MemberSubAdapter extends RecyclerView.Adapter<MemberSubAdapter.View
         return memberSubList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView tvEmail,tvPhone, tvTrnId;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
             tvEmail = itemView.findViewById(R.id.item_trn_email_sub);
             tvPhone = itemView.findViewById(R.id.item_trn_phone_sub);
@@ -58,6 +63,17 @@ public class MemberSubAdapter extends RecyclerView.Adapter<MemberSubAdapter.View
             tvEmail.setText(email);
             tvPhone.setText(phone);
             tvTrnId.setText(trnId);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = this.getAbsoluteAdapterPosition();
+            MemberSub memberSub = memberSubList.get(position);
+            String email = memberSub.getEmail();
+            String trnId = memberSub.getTransactionID();
+            Toast.makeText(view.getContext(), email +"\n"+trnId,Toast.LENGTH_LONG).show();
+            Intent aprovalIn = new Intent(view.getContext(), AprovalOrRejectedActivity.class);
+            view.getContext().startActivity(aprovalIn);
         }
     }
 }

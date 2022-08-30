@@ -16,15 +16,20 @@
         android:theme="@style/Theme.MoneyCare"
         tools:targetApi="31">
         <activity
+            android:name=".AprovalOrRejectedActivity"
+            android:exported="false"
+            android:label="Approval Status"
+            android:theme="@style/Theme.MoneyCare.WithActionBar"/>
+        <activity
             android:name=".AdminApprovalSubActivity"
             android:exported="false"
-            android:theme="@style/Theme.MoneyCare.WithActionBar"
-            android:label="Sub List"/>
+            android:label="Sub List"
+            android:theme="@style/Theme.MoneyCare.WithActionBar" />
         <activity
             android:name=".AdminApprovalSuperActivity"
             android:exported="false"
-            android:theme="@style/Theme.MoneyCare.WithActionBar"
-            android:label="Pending Approval List"/>
+            android:label="Pending Approval List"
+            android:theme="@style/Theme.MoneyCare.WithActionBar" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

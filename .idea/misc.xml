@@ -21,6 +21,7 @@
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/activity_admin_approval_super.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/activity_amount_deposit.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/activity_amount_withdraw.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/activity_aproval_or_rejected.xml" value="0.2359375" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/activity_bank_details.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/activity_change_password.xml" value="0.2359375" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/activity_edit_bank_account.xml" value="0.24547101449275363" />
@@ -37,6 +38,7 @@
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/admin_super_item.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/content_login.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/email_dialog.xml" value="0.10885416666666667" />
+        <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/fragment_aproval.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/fragment_first.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/fragment_login.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/harip/AndroidStudioProjects/MoneyCare/app/src/main/res/layout/fragment_login_and_registration.xml" value="0.10989583333333333" />
