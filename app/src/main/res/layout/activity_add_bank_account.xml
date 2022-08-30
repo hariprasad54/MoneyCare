@@ -18,6 +18,7 @@
         android:layout_marginTop="32dp"
         android:padding="10dp"
         android:text="Bank Name"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,6 +44,7 @@
         android:layout_marginLeft="20dp"
         android:padding="10dp"
         android:text="Account Number"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_bank_name_in_add_account" />
 
@@ -68,6 +70,7 @@
         android:layout_marginLeft="20dp"
         android:padding="10dp"
         android:text="Re-enter Account Number"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_acNum_add_account" />
 
@@ -87,17 +90,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:padding="10dp"
-        android:text="IFSC Code"
+        android:text="Name"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_re_enter_account" />
 
     <EditText
-        android:id="@+id/et_ifsc_code_in_add_account"
+        android:id="@+id/et_name_in_add_account"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/et_custom"
@@ -106,8 +110,34 @@
         android:layout_marginBottom="10dp"
         android:padding="15dp"
         android:ems="10"
+        android:hint="Enter Name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:padding="10dp"
+        android:text="IFSC Code"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name_in_add_account" />
+
+    <EditText
+        android:id="@+id/et_ifsc_code_in_add_account"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/et_custom"
+        android:ems="10"
         android:hint="Enter IFSC Code"
         android:inputType="textPersonName"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 

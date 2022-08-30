@@ -16,12 +16,12 @@ import android.widget.Toast;
 
 public class EditBankAccountActivity extends AppCompatActivity {
 
-    private EditText bName,bAcNumber,bIfscCode;
+    private EditText bName,bAcNumber,bIfscCode,bAcHolderName;
     private TextView saveStaus;
     private Button btnSaveDetails;
 
     private String bankName,AcNumber,IfscCode;
-    private String bNameIntent,accountNumberIntent,ifscCodeIntent;
+    private String bNameIntent,accountNumberIntent,ifscCodeIntent,acHolderNameIntent;
 
 
     @Override
@@ -34,12 +34,14 @@ public class EditBankAccountActivity extends AppCompatActivity {
         bIfscCode = findViewById(R.id.et_ifsc_code_in_edit_account);
         btnSaveDetails = findViewById(R.id.btn_save_details);
         saveStaus = findViewById(R.id.status_edit_account);
+        bAcHolderName = findViewById(R.id.et_name_in_edit_account);
 
         Intent bDetails = getIntent();
         bNameIntent = bDetails.getStringExtra("bName");
         accountNumberIntent = bDetails.getStringExtra("acNumber");
         ifscCodeIntent = bDetails.getStringExtra("ifscCode");
-        initDetails(bNameIntent,accountNumberIntent,ifscCodeIntent);
+        acHolderNameIntent = bDetails.getStringExtra("acHolderName");
+        initDetails(bNameIntent,accountNumberIntent,ifscCodeIntent,acHolderNameIntent);
 
         btnSaveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,14 +58,13 @@ public class EditBankAccountActivity extends AppCompatActivity {
             }
         });
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void initDetails(String bNameIntent, String accountNumberIntent, String ifscCodeIntent) {
+    private void initDetails(String bNameIntent, String accountNumberIntent, String ifscCodeIntent, String acHolderNameIntent) {
         bName.setText(bNameIntent);
         bAcNumber.setText(accountNumberIntent);
         bIfscCode.setText(ifscCodeIntent);
+        bAcHolderName.setText(acHolderNameIntent);
     }
 
     boolean isEmpty(String str) {
@@ -77,19 +78,6 @@ public class EditBankAccountActivity extends AppCompatActivity {
             stat = false;
         }
         return stat;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                Intent intent = new Intent(this, BankDetailsActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

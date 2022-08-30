@@ -28,6 +28,7 @@
         android:layout_marginBottom="44dp"
         android:layout_toEndOf="@+id/mem_profile_pic"
         android:text="Email"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <TextView
@@ -41,6 +42,7 @@
         android:layout_marginBottom="12dp"
         android:layout_toEndOf="@+id/mem_profile_pic"
         android:text="Phone Number"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <View

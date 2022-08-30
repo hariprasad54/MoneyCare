@@ -47,8 +47,8 @@ public class BankDetailsActivity extends AppCompatActivity {
 
 
         bankAccountList = new ArrayList<>();
-        bankAccountList.add(new BankAccount("CICIC BANK","IFSC00001","1234567890"));
-        bankAccountList.add(new BankAccount("ABC BANK","IFSC00002","9081726354"));
+        bankAccountList.add(new BankAccount("CICIC BANK","IFSC00001","1234567890","Alex Fleming"));
+        bankAccountList.add(new BankAccount("ABC BANK","IFSC00002","9081726354","Robin Sharma"));
 
         if(bankAccountList.size() <= 0){
             accounts.setText("No Account Details Found..Click the Add Account Details to add ");
@@ -58,9 +58,6 @@ public class BankDetailsActivity extends AppCompatActivity {
         //initData();
         initRecyclerView();
 
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void initData() {
@@ -75,23 +72,4 @@ public class BankDetailsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
 }

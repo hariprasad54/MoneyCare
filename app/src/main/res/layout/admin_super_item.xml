@@ -29,6 +29,7 @@
         android:layout_toEndOf="@+id/mem_profile_pic_admin_sup"
         android:gravity="center_vertical"
         android:text="Email"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <View

@@ -48,6 +48,7 @@
                 android:layout_toStartOf="@+id/btn_withdraw"
                 android:text="1987"
                 android:textAlignment="viewStart"
+                android:textColor="@color/black"
                 android:textSize="34sp" />
 
             <Button
@@ -102,6 +103,7 @@
                 android:layout_toStartOf="@+id/btn_deposit"
                 android:text="15432"
                 android:textAlignment="viewStart"
+                android:textColor="@color/black"
                 android:textSize="34sp" />
 
             <Button

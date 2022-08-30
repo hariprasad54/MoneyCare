@@ -40,8 +40,9 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
         String bankName = bankAccounts.get(position).getBankName();
         String ifscName = bankAccounts.get(position).getIfscCode();
         String acNumber = bankAccounts.get(position).getAcNumber();
+        String acHolderName = bankAccounts.get(position).getAcHolderName();
 
-        holder.setData(bankName,ifscName,acNumber);
+        holder.setData(bankName,ifscName,acNumber,acHolderName);
 
     }
 
@@ -53,7 +54,7 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView tvBankName,tvIfsc,tvAcNumber;
+        private TextView tvBankName,tvIfsc,tvAcNumber,tvAcHolderName;
         private Button btnEditBank, btnDeleteBank;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,9 +62,11 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
             tvBankName = itemView.findViewById(R.id.txt_bank_name);
             tvIfsc = itemView.findViewById(R.id.txt_ifsc_code);
             tvAcNumber = itemView.findViewById(R.id.txt_bank_account);
+            tvAcHolderName = itemView.findViewById(R.id.txt_ac_holder_name);
 
             btnEditBank = itemView.findViewById(R.id.btn_edit_bank);
             btnDeleteBank = itemView.findViewById(R.id.btn_del_bank);
+
 
             btnDeleteBank.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,16 +93,17 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
                     editBankIn.putExtra("bName",bankAccounts.get(getAbsoluteAdapterPosition()).getBankName());
                     editBankIn.putExtra("acNumber",bankAccounts.get(getAbsoluteAdapterPosition()).getAcNumber());
                     editBankIn.putExtra("ifscCode",bankAccounts.get(getAbsoluteAdapterPosition()).getIfscCode());
+                    editBankIn.putExtra("acHolderName",bankAccounts.get(getAbsoluteAdapterPosition()).getAcHolderName());
                     view.getContext().startActivity(editBankIn);
                 }
             });
         }
 
-        public void setData(String bankName, String ifscName, String acNumber) {
-
+        public void setData(String bankName, String ifscName, String acNumber, String acHolderName) {
             tvBankName.setText(bankName);
             tvIfsc.setText(ifscName);
             tvAcNumber.setText(acNumber);
+            tvAcHolderName.setText(acHolderName);
         }
     }
 }

@@ -8,6 +8,7 @@ import androidx.core.os.BuildCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -72,39 +73,33 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "My Referrals is Clicked",Toast.LENGTH_SHORT).show();
                         Intent refIn = new Intent(getApplicationContext(),MyReferralsActivity.class);
                         startActivity(refIn);
-                        finish();
                         break;
                     case R.id.nav_term_view:
                         Toast.makeText(MainActivity.this, "Team View is Clicked",Toast.LENGTH_SHORT).show();
                         Intent teamIn = new Intent(getApplicationContext(),UserTeamActivity.class);
                         startActivity(teamIn);
-                        finish();
                         break;
                     case R.id.nav_our_banks:
                         Toast.makeText(MainActivity.this, "Our Banks is Clicked",Toast.LENGTH_SHORT).show();
                         Intent bankIn = new Intent(getApplicationContext(),BankDetailsActivity.class);
                         startActivity(bankIn);
-                        finish();
                         break;
                     case R.id.nav_new_reg:
                         Toast.makeText(MainActivity.this, "New Registration is Clicked",Toast.LENGTH_SHORT).show();
                         Intent regIn = new Intent(getApplicationContext(), RegisterActivity.class);
                         regIn.putExtra("req_mode","home_page");
                         startActivity(regIn);
-                        finish();
                         break;
                     case R.id.nav_change_pass:
                         Toast.makeText(MainActivity.this, "Change Password is Clicked",Toast.LENGTH_SHORT).show();
                         Intent in = new Intent(getApplicationContext(), OtpValidationActivity.class);
                         in.putExtra("from","change_pass");
                         startActivity(in);
-                        finish();
                         break;
                     case R.id.nav_view_edit_profile:
                         Toast.makeText(MainActivity.this, "View/Edit Password is Clicked",Toast.LENGTH_SHORT).show();
                         Intent profile_in = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(profile_in);
-                        finish();
                         break;
                     case R.id.nav_logout:
                         Toast.makeText(MainActivity.this, "logout is clicked",Toast.LENGTH_SHORT).show();
@@ -131,11 +126,20 @@ public class MainActivity extends AppCompatActivity {
                         alert11.show();
                         break;
                     case R.id.nav_rate:
-                        Toast.makeText(MainActivity.this, "Rate us is Clicked",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(MainActivity.this, "Rate us is Clicked",Toast.LENGTH_SHORT).show();
+                        Intent rate_in = new Intent(MainActivity.this, RateUsActivity.class);
+                        startActivity(rate_in);
+                        break;
                     case R.id.nav_aboutus:
-                        Toast.makeText(MainActivity.this, "About us is Clicked",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(MainActivity.this, "About us is Clicked",Toast.LENGTH_SHORT).show();
+                        Intent about_in = new Intent(MainActivity.this, AboutUsActivity.class);
+                        startActivity(about_in);
+                        break;
                     case R.id.nav_version:
-                        Toast.makeText(MainActivity.this, "Version is Clicked",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(MainActivity.this, "Version is Clicked",Toast.LENGTH_SHORT).show();
+                        Intent version_in = new Intent(MainActivity.this, VersionInfoActivity.class);
+                        startActivity(version_in);
+                        break;
                     default:
                         return true;
 

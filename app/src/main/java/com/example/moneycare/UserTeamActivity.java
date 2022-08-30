@@ -39,8 +39,8 @@ public class UserTeamActivity extends AppCompatActivity {
 
         initRecyclerView();
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void initRecyclerView() {
@@ -51,7 +51,7 @@ public class UserTeamActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -69,5 +69,5 @@ public class UserTeamActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-    }
+    }*/
 }
