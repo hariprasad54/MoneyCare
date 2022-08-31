@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -37,7 +37,6 @@
                     app:titleTextColor="@color/white" />
 
             </com.google.android.material.appbar.AppBarLayout>
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -97,13 +96,9 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/welcome_card1"
                     android:layout_width="match_parent"
-                    android:layout_height="110dp"
+                    android:layout_height="80dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="30dp"
-                    android:gravity="center_horizontal|top"
+                    android:gravity="center_horizontal"
                     android:textAlignment="gravity"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -113,8 +108,8 @@
                         android:id="@+id/txt_ref_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="5dp"
                         android:text="Share Us"
                         android:textColor="@color/black"
@@ -123,14 +118,15 @@
 
                     <LinearLayout
                         android:id="@+id/social_icons"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="40dp"
                         android:layout_marginEnd="20dp"
                         android:gravity="center_horizontal">
 
                         <ImageButton
+                            android:id="@+id/social_message_app"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_marginEnd="15dp"
@@ -138,12 +134,14 @@
                             tools:ignore="SpeakableTextPresentCheck" />
 
                         <ImageButton
+                            android:id="@+id/social_whatsapp"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_marginEnd="15dp"
                             android:background="@drawable/ic_whatsapp" />
 
                         <ImageButton
+                            android:id="@+id/social_instagram"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_marginEnd="10dp"
@@ -164,7 +162,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="185dp"
-                        android:layout_height="130dp"
+                        android:layout_height="100dp"
                         android:layout_alignParentTop="true"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="0dp"
@@ -197,7 +195,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="185dp"
-                        android:layout_height="130dp"
+                        android:layout_height="100dp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="5dp"
@@ -284,7 +282,6 @@
                         android:layout_height="150dp"
                         android:layout_below="@+id/card_add_user"
                         android:layout_alignParentStart="true"
-                        android:layout_alignParentBottom="true"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="71dp"
@@ -344,7 +341,6 @@
                         android:layout_height="150dp"
                         android:layout_below="@+id/card_your_team"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="20dp"
                         app:cardCornerRadius="35dp">
@@ -363,7 +359,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="20dp"
-                            android:text="Add User"
+                            android:text="Profile"
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -373,11 +369,9 @@
 
                 </RelativeLayout>
 
-
             </RelativeLayout>
-
-
         </RelativeLayout>
+
 
 
     <com.google.android.material.navigation.NavigationView
@@ -393,4 +387,4 @@
 </androidx.drawerlayout.widget.DrawerLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

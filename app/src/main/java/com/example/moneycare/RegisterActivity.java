@@ -42,10 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         //checking the request
-        if(reqType.equals("home_page")){
-            btnLogMove.setVisibility(View.INVISIBLE);
-            swipeLeft.setVisibility(View.INVISIBLE);
-        }
 
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override

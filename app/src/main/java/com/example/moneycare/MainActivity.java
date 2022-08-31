@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.os.BuildCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -17,6 +18,7 @@ import android.os.IBinder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private String userEmail;
     private TextView tvEmail;
     private CircleImageView profilePic;
+    private ImageButton cardAddUser,cardMyTeam,cardBankAccounts,cardProfile;
+    private ImageButton socialMessage,socialWhatsapp,socialInstagram;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,18 @@ public class MainActivity extends AppCompatActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
+
+        //quick links buttons
+        cardAddUser = findViewById(R.id.imb_add_user);
+        cardMyTeam = findViewById(R.id.imb_my_team);
+        cardBankAccounts = findViewById(R.id.imb_bank_accounts);
+        cardProfile = findViewById(R.id.imb_profile);
+
+        //social media buttons
+        socialMessage = findViewById(R.id.social_message_app);
+        socialWhatsapp = findViewById(R.id.social_whatsapp);
+        socialInstagram = findViewById(R.id.social_instagram);
+
         //toolbar.inflateMenu(R.menu.menu_admin);
 
         Intent loginDetails = getIntent();
@@ -149,6 +165,62 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //quick link listeners
+        cardAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addUserIn = new Intent(MainActivity.this,RegisterActivity.class);
+                startActivity(addUserIn);
+            }
+        });
+
+        cardMyTeam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myTeamIn = new Intent(MainActivity.this,UserTeamActivity.class);
+                startActivity(myTeamIn);
+            }
+        });
+
+        cardBankAccounts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent bankAcIn = new Intent(MainActivity.this,BankDetailsActivity.class);
+                startActivity(bankAcIn);
+            }
+        });
+
+        cardProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent profileIn = new Intent(MainActivity.this,ProfileActivity.class);
+                startActivity(profileIn);
+            }
+        });
+
+
+        //social media links listeners
+
+        socialMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        socialInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        socialWhatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
