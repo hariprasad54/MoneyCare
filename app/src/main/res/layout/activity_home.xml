@@ -173,12 +173,12 @@
 
                             <ImageButton
                                 android:id="@+id/imb_add_user"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="5dp"
-                                android:layout_marginEnd="5dp"
-                                android:background="@drawable/ic_baseline_person_add_24"
+                                android:layout_marginEnd="0dp"
+                                android:background="@drawable/home_add_user"
                                 tools:ignore="SpeakableTextPresentCheck" />
 
                             <TextView
@@ -206,11 +206,11 @@
 
                             <ImageButton
                                 android:id="@+id/imb_bank_accounts"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
-                                android:background="@drawable/ic_baseline_account_balance_24" />
+                                android:background="@drawable/home_bank_accounts" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -236,11 +236,11 @@
 
                             <ImageButton
                                 android:id="@+id/imb_my_team"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
-                                android:background="@drawable/ic_baseline_people_24" />
+                                android:background="@drawable/home_myteam" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -266,12 +266,12 @@
 
                             <ImageButton
                                 android:id="@+id/imb_profile"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="0dp"
-                                android:background="@drawable/ic_baseline_account_circle_24" />
+                                android:background="@drawable/home_profile" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -297,12 +297,12 @@
 
                             <ImageButton
                                 android:id="@+id/imb_about_us"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="0dp"
-                                android:background="@drawable/ic_baseline_info_24" />
+                                android:background="@drawable/home_info" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -328,12 +328,12 @@
 
                             <ImageButton
                                 android:id="@+id/imb_rate_us"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginEnd="0dp"
-                                android:background="@drawable/ic_baseline_star_rate_24" />
+                                android:background="@drawable/home_rating" />
 
                             <TextView
                                 android:layout_width="wrap_content"
