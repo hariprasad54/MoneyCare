@@ -1,20 +1,28 @@
 package com.example.moneycare;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.os.BuildCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
     private String userEmail;
     private TextView tvEmail;
     private CircleImageView profilePic;
-    private ImageButton cardAddUser,cardMyTeam,cardBankAccounts,cardProfile;
+    private ImageButton cardAddUser,cardMyTeam,cardBankAccounts,cardProfile,cardAboutUs,cardRateUs;
     private ImageButton socialMessage,socialWhatsapp,socialInstagram;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
+
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
@@ -50,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         cardMyTeam = findViewById(R.id.imb_my_team);
         cardBankAccounts = findViewById(R.id.imb_bank_accounts);
         cardProfile = findViewById(R.id.imb_profile);
+        cardAboutUs = findViewById(R.id.imb_about_us);
+        cardRateUs = findViewById(R.id.imb_rate_us);
 
         //social media buttons
         socialMessage = findViewById(R.id.social_message_app);
@@ -198,12 +210,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        cardAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent aboutIn = new Intent(MainActivity.this,AboutUsActivity.class);
+                startActivity(aboutIn);
+            }
+        });
+
+        cardRateUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent rateusIn = new Intent(MainActivity.this,RateUsActivity.class);
+                startActivity(rateusIn);
+            }
+        });
 
         //social media links listeners
 
         socialMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try {
+
+                }catch (ActivityNotFoundException e){
+                    Log.d("error","Activity not found");
+                }
 
             }
         });
@@ -237,6 +269,11 @@ public class MainActivity extends AppCompatActivity {
                         //MainActivity.super.onBackPressed();
                     }
                 }).create().show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 }
