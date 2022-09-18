@@ -11,6 +11,9 @@ public class MemberSub {
         TransactionID = transactionID;
     }
 
+    public MemberSub() {
+    }
+
     public String getEmail() {
         return Email;
     }

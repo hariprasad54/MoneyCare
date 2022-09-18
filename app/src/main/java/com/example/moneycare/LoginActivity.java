@@ -13,8 +13,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,21 +26,44 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.PostRequest;
+import com.example.moneycare.model.LoginType;
+import com.example.moneycare.model.UserAuthEntity;
+
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 
+import javax.net.ssl.HttpsURLConnection;
+
+/**
+ * TODO Check if default login working or not
+ * (once approved by admin the user should be able login with mny123 password)
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private EditText email,password;
     private Button btnLogin,btnRegMove;
     private TextView forgotPass;
-
+    public static String userId;
+    public static String adminUserId;
     private String strEmail,pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         email = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
         btnLogin = findViewById(R.id.btn_login);
@@ -52,12 +77,31 @@ public class LoginActivity extends AppCompatActivity {
                 pass = password.getText().toString();
                 //if(validateDetails(strEmail,pass)) {
                 if(true) {
-                    if (strEmail.equals("test@test.com") && pass.equals("pass123")){
+                    UserAuthEntity loginItem = new UserAuthEntity(strEmail, pass);
+                    String response = "";
+
+                    try {
+                      response =  PostRequest.sendRequest(API.MAKELOGIN, loginItem.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("The response from server: " + response);
+                    if (!response.isEmpty() && response.equalsIgnoreCase("\"success\"")){
                     //if (true){
                         Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
                         Intent in = new Intent(LoginActivity.this,MainActivity.class);
                         in.putExtra("userEmail",strEmail);
+                        userId = strEmail;
                         startActivity(in);
+                    }
+                    else if(response.equalsIgnoreCase("\"adminlogin\"")){
+                        Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
+                        Intent in = new Intent(LoginActivity.this,AdminApprovalSuperActivity.class);
+                        in.putExtra("userEmail",strEmail);
+                        adminUserId = strEmail;
+                        startActivity(in);
+                        finish();
                     }
                     else if (strEmail.equals("admin@test.com") && pass.equals("pass123")){
                         //if (true){

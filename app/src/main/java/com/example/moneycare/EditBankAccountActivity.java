@@ -14,6 +14,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.PostRequest;
+import com.example.moneycare.model.BankAccount;
+import com.example.moneycare.model.UserAuthEntity;
+import com.example.moneycare.requests.BankAccountRequest;
+
+import java.io.IOException;
+
 public class EditBankAccountActivity extends AppCompatActivity {
 
     private EditText bName,bAcNumber,bIfscCode,bAcHolderName;
@@ -52,6 +60,14 @@ public class EditBankAccountActivity extends AppCompatActivity {
 
                 if(validateDetails(bankName,AcNumber,IfscCode)){
 
+                    BankAccount bankAccount = new BankAccount(AcNumber,bankName, IfscCode, "NameToBeFixed");
+                    UserAuthEntity srcUser = new UserAuthEntity().setUserName(LoginActivity.userId);
+                    BankAccountRequest br = new BankAccountRequest(srcUser, bankAccount);
+                    try {
+                        PostRequest.sendRequest(API.ADDBANKACCOUNT, br.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     saveStaus.setText("Account Details Saved!!");
                     saveStaus.setVisibility(View.VISIBLE);
                 }

@@ -24,16 +24,29 @@ import android.widget.Toast;
 
 import com.example.moneycare.adapters.MemberSubAdapter;
 import com.example.moneycare.adapters.MemberSuperAdapter;
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.GetRequest;
+import com.example.moneycare.model.ApprovalRequest;
+import com.example.moneycare.model.BankAccount;
+import com.example.moneycare.model.BasicUserEntity;
 import com.example.moneycare.model.MemberSuper;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
+/**
+ * TODO ADMIN should also have an add user butten in which
+ * he can directly add an user without approval
+ */
 public class AdminApprovalSuperActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewSuper;
-    private List<MemberSuper> memberSuperList;
+    public static List<ApprovalRequest> memberSuperList;
     private MemberSuperAdapter superAdapter;
     private String userEmail;
     private  AlertDialog.Builder builder;
@@ -41,17 +54,25 @@ public class AdminApprovalSuperActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_approval_super);
-
         memberSuperList = new ArrayList<>();
-        memberSuperList.add(new MemberSuper("abc@abc.com",R.drawable.ic_baseline_account_circle_24));
-        memberSuperList.add(new MemberSuper("def@abc.com",R.drawable.ic_baseline_account_circle_24));
-        memberSuperList.add(new MemberSuper("ghi@abc.com",R.drawable.ic_baseline_account_circle_24));
-        memberSuperList.add(new MemberSuper("jkl@abc.com",R.drawable.ic_baseline_account_circle_24));
-        memberSuperList.add(new MemberSuper("mno@abc.com",R.drawable.ic_baseline_account_circle_24));
-        memberSuperList.add(new MemberSuper("pqr@abc.com",R.drawable.ic_baseline_account_circle_24));
-        memberSuperList.add(new MemberSuper("stu@abc.com",R.drawable.ic_baseline_account_circle_24));
-        memberSuperList.add(new MemberSuper("vwx@abc.com",R.drawable.ic_baseline_account_circle_24));
-        memberSuperList.add(new MemberSuper("xyz@abc.com",R.drawable.ic_baseline_account_circle_24));
+        try {
+            List<ApprovalRequest> tmpList = new ObjectMapper().readValue(GetRequest.sendRequest(API.GETPENDINGAPPROVALS+LoginActivity.adminUserId), new TypeReference<List<ApprovalRequest>>(){});
+            HashSet<ApprovalRequest> set = new HashSet<>(tmpList);
+            memberSuperList.addAll(tmpList);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        memberSuperList.add(new MemberSuper("abc@abc.com",R.drawable.ic_baseline_account_circle_24));
+//        memberSuperList.add(new MemberSuper("def@abc.com",R.drawable.ic_baseline_account_circle_24));
+//        memberSuperList.add(new MemberSuper("ghi@abc.com",R.drawable.ic_baseline_account_circle_24));
+//        memberSuperList.add(new MemberSuper("jkl@abc.com",R.drawable.ic_baseline_account_circle_24));
+//        memberSuperList.add(new MemberSuper("mno@abc.com",R.drawable.ic_baseline_account_circle_24));
+//        memberSuperList.add(new MemberSuper("pqr@abc.com",R.drawable.ic_baseline_account_circle_24));
+//        memberSuperList.add(new MemberSuper("stu@abc.com",R.drawable.ic_baseline_account_circle_24));
+//        memberSuperList.add(new MemberSuper("vwx@abc.com",R.drawable.ic_baseline_account_circle_24));
+//        memberSuperList.add(new MemberSuper("xyz@abc.com",R.drawable.ic_baseline_account_circle_24));
 
         initRecyclerView();
 

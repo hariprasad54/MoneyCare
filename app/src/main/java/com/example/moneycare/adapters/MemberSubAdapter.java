@@ -73,6 +73,8 @@ public class MemberSubAdapter extends RecyclerView.Adapter<MemberSubAdapter.View
             String trnId = memberSub.getTransactionID();
             Toast.makeText(view.getContext(), email +"\n"+trnId,Toast.LENGTH_LONG).show();
             Intent aprovalIn = new Intent(view.getContext(), AprovalOrRejectedActivity.class);
+            aprovalIn.putExtra("userEmail", email);
+            aprovalIn.putExtra("transactionId", trnId);
             view.getContext().startActivity(aprovalIn);
         }
     }

@@ -13,29 +13,46 @@ import android.widget.TextView;
 
 import com.example.moneycare.adapters.BankAdapter;
 import com.example.moneycare.adapters.TeamAdapter;
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.GetRequest;
 import com.example.moneycare.model.BankAccount;
+import com.example.moneycare.model.BasicUserEntity;
 import com.example.moneycare.model.TeamMember;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserTeamActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<TeamMember> teamMemberList;
+    private List<BasicUserEntity> teamMemberList;
     private TeamAdapter adapter;
-
+    private String userEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_team);
 
-        teamMemberList = new ArrayList<>();
-        teamMemberList.add(new TeamMember("abc@abc.com","1234567890",R.drawable.ic_baseline_account_circle_24));
-        teamMemberList.add(new TeamMember("def@abc.com","4567890123",R.drawable.ic_baseline_account_circle_24));
-        teamMemberList.add(new TeamMember("ghi@abc.com","3456789012",R.drawable.ic_baseline_account_circle_24));
-        teamMemberList.add(new TeamMember("klm@abc.com","8901234567",R.drawable.ic_baseline_account_circle_24));
-        teamMemberList.add(new TeamMember("nop@abc.com","6789054321",R.drawable.ic_baseline_account_circle_24));
+        userEmail = LoginActivity.userId;
+        try {
+            teamMemberList = new ArrayList<>();
+            Set<BasicUserEntity> set = new HashSet<>( new ObjectMapper()
+                    .readValue(GetRequest.sendRequest(API.GETTEAM+userEmail),new TypeReference<List<BasicUserEntity>>(){}));
+            teamMemberList.addAll(set);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        teamMemberList.add(new TeamMember("abc@abc.com","1234567890",R.drawable.ic_baseline_account_circle_24));
+//        teamMemberList.add(new TeamMember("def@abc.com","4567890123",R.drawable.ic_baseline_account_circle_24));
+//        teamMemberList.add(new TeamMember("ghi@abc.com","3456789012",R.drawable.ic_baseline_account_circle_24));
+//        teamMemberList.add(new TeamMember("klm@abc.com","8901234567",R.drawable.ic_baseline_account_circle_24));
+//        teamMemberList.add(new TeamMember("nop@abc.com","6789054321",R.drawable.ic_baseline_account_circle_24));
 
         initRecyclerView();
 

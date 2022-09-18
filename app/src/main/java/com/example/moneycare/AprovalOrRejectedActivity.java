@@ -2,6 +2,7 @@ package com.example.moneycare;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.moneycare.adapters.MemberSubAdapter;
+import com.example.moneycare.adapters.MemberSuperAdapter;
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.PostRequest;
+import com.example.moneycare.model.ApprovalRequest;
+import com.example.moneycare.model.BasicUserEntity;
+import com.example.moneycare.model.MemberSub;
+import com.example.moneycare.model.MemberSuper;
+import com.example.moneycare.model.UserAuthEntity;
+
+import java.io.IOException;
 
 public class AprovalOrRejectedActivity extends AppCompatActivity {
 
@@ -22,7 +35,10 @@ public class AprovalOrRejectedActivity extends AppCompatActivity {
     private Button btnSubmitStat;
     private String status;
 
-
+    /**
+     * TODO Upon approval it should remove the element but it is still showing in the list
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +50,9 @@ public class AprovalOrRejectedActivity extends AppCompatActivity {
         tvRejectionFeedback = findViewById(R.id.tv_rejection_feedback);
         feedBack = findViewById(R.id.et_multi_line_txt);
         btnSubmitStat = findViewById(R.id.btn_submit_status);
-
+        Intent curIn = getIntent();
+        userEmail.setText( curIn.getStringExtra("userEmail"));
+        userTrnID.setText(curIn.getStringExtra("transactionId"));
         statGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -60,6 +78,23 @@ public class AprovalOrRejectedActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Nothing Selected",Toast.LENGTH_LONG).show();
                 }
                 else{
+                    MemberSub curUser = new MemberSub();
+                    for (MemberSub curMmber : AdminApprovalSubActivity.memberSubList){
+                        if(curMmber.getEmail().equals(userEmail.getText().toString())){
+                            curUser = curMmber;
+                        }
+                    }
+//                    new ApprovalRequest(new UserAuthEntity()
+//                            .setUserName(AdminApprovalSubActivity.srcUsrerId),
+//                            new BasicUserEntity().setEmail(userEmail.getText().toString()));
+                    try {
+                        PostRequest.sendRequest(API.APPROVEUSER,new ApprovalRequest(new UserAuthEntity()
+                                .setUserName(AdminApprovalSubActivity.srcUsrerId),
+                                new BasicUserEntity(curUser)).toString());
+                        AdminApprovalSubActivity.memberSubList.remove(curUser);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(getApplicationContext(),"Submitted",Toast.LENGTH_LONG).show();
                 }
             }

@@ -13,18 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneycare.AdminApprovalSubActivity;
 import com.example.moneycare.R;
+import com.example.moneycare.model.ApprovalRequest;
+import com.example.moneycare.model.BasicUserEntity;
 import com.example.moneycare.model.MemberSuper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MemberSuperAdapter extends RecyclerView.Adapter<MemberSuperAdapter.ViewHolder> {
 
-    private List<MemberSuper> supMembersList;
+    private List<ApprovalRequest> supMembersList;
 
-    public MemberSuperAdapter(List<MemberSuper> supMembersList){
-        this.supMembersList = supMembersList;
+    public MemberSuperAdapter(List<ApprovalRequest> supMembersList){
+        HashSet<ApprovalRequest> set = new HashSet<>(supMembersList);
+        this.supMembersList = new ArrayList<>();
+        this.supMembersList.addAll(set);
     }
     @NonNull
     @Override
@@ -35,8 +42,8 @@ public class MemberSuperAdapter extends RecyclerView.Adapter<MemberSuperAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MemberSuperAdapter.ViewHolder holder, int position) {
-        String email = supMembersList.get(position).getEmail();
-        int profileUrl = supMembersList.get(position).getProfileUrl();
+        String email = supMembersList.get(position).srcUser.getUserName();
+        int profileUrl = 0;
 
         holder.setData(email,profileUrl);
     }
@@ -71,10 +78,11 @@ public class MemberSuperAdapter extends RecyclerView.Adapter<MemberSuperAdapter.
         @Override
         public void onClick(View view) {
            int position = this.getAbsoluteAdapterPosition();
-           MemberSuper memberSuper = supMembersList.get(position);
-           String email = memberSuper.getEmail();
+           ApprovalRequest memberSuper = supMembersList.get(position);
+           String email = memberSuper.srcUser.getUserName();
             Toast.makeText(view.getContext(), email,Toast.LENGTH_LONG).show();
             Intent subIn = new Intent(view.getContext(), AdminApprovalSubActivity.class);
+            subIn.putExtra("srcUserId",email);
             view.getContext().startActivity(subIn);
         }
     }

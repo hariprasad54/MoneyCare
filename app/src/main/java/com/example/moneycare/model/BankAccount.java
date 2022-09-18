@@ -1,24 +1,12 @@
 package com.example.moneycare.model;
 
 public class BankAccount {
-    private String bankName,ifscCode,acNumber,acHolderName;
-
-    public BankAccount(String bankName, String ifscCode, String acNumber,String acHolderName) {
-        this.bankName = bankName;
-        this.ifscCode = ifscCode;
-        this.acNumber = acNumber;
-        this.acHolderName = acHolderName;
+    public String getAccountNo() {
+        return accountNo;
     }
 
-    public BankAccount() {
-    }
-
-    public String getAcHolderName() {
-        return acHolderName;
-    }
-
-    public void setAcHolderName(String acHolderName) {
-        this.acHolderName = acHolderName;
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
     }
 
     public String getBankName() {
@@ -29,19 +17,70 @@ public class BankAccount {
         this.bankName = bankName;
     }
 
-    public String getIfscCode() {
-        return ifscCode;
+    public String getIfsc() {
+        return ifsc;
     }
 
-    public void setIfscCode(String ifscCode) {
-        this.ifscCode = ifscCode;
+    public void setIfsc(String ifsc) {
+        this.ifsc = ifsc;
     }
 
-    public String getAcNumber() {
-        return acNumber;
+    public String getUpiId() {
+        return upiId;
     }
 
-    public void setAcNumber(String acNumber) {
-        this.acNumber = acNumber;
+    public void setUpiId(String upiId) {
+        this.upiId = upiId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    String accountNo;
+    String bankName;
+    String ifsc;
+    String upiId;
+    String name;
+
+    public BankAccount(String accountNo, String bankName, String ifsc, String name) {
+        this.accountNo = accountNo;
+        this.bankName = bankName;
+        this.ifsc = ifsc;
+        this.name = name;
+    }
+
+    public BankAccount(String accountNo, String bankName, String ifsc, String upiId, String name) {
+        this.accountNo = accountNo;
+        this.bankName = bankName;
+        this.ifsc = ifsc;
+        this.upiId = upiId;
+        this.name = name;
+    }
+
+    public BankAccount() {
+    }
+
+    /**
+     * "{" +
+     * "\"userName\":\"" + userName + '\"' +
+     * ", \"password\":\"" + password + '\"' +
+     * '}';
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "{"
+                + "\"accountNo\":\"" + accountNo + "\""
+                + ", \"bankName\":\"" + bankName + "\""
+                + ", \"ifsc\":\"" + ifsc + "\""
+                + ", \"upiId\":\"" + upiId + "\""
+                + ", \"name\":\"" + name + "\""
+                + "}";
     }
 }

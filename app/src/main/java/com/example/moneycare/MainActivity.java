@@ -105,16 +105,20 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_term_view:
                         Toast.makeText(MainActivity.this, "Team View is Clicked",Toast.LENGTH_SHORT).show();
                         Intent teamIn = new Intent(getApplicationContext(),UserTeamActivity.class);
+                        teamIn.putExtra("userEmail", userEmail);
                         startActivity(teamIn);
                         break;
                     case R.id.nav_our_banks:
                         Toast.makeText(MainActivity.this, "Our Banks is Clicked",Toast.LENGTH_SHORT).show();
+
                         Intent bankIn = new Intent(getApplicationContext(),BankDetailsActivity.class);
+                        bankIn.putExtra("userEmail",userEmail);
                         startActivity(bankIn);
                         break;
                     case R.id.nav_new_reg:
                         Toast.makeText(MainActivity.this, "New Registration is Clicked",Toast.LENGTH_SHORT).show();
                         Intent regIn = new Intent(getApplicationContext(), RegisterActivity.class);
+                        regIn.putExtra("userEmail", userEmail);
                         regIn.putExtra("req_mode","home_page");
                         startActivity(regIn);
                         break;

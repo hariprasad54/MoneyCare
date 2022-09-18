@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -14,12 +15,24 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.PostRequest;
+import com.example.moneycare.model.BasicUserEntity;
+import com.example.moneycare.model.UserAuthEntity;
+import com.example.moneycare.requests.AddUserRequest;
+
+import java.io.IOException;
+
+/**
+ * TODO While adding user add first name and lastname chang referal code to transactionid
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText fullName,email,mobile,pass,repass,refCode;
     private Button btnReg,btnLogMove;
     private String reqType;
     private TextView swipeLeft;
+    private String userEmail;
 
     private  String strFullName,strEmail,strMobile,strPass,strRePass,strRefCode;
     @Override
@@ -27,7 +40,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
         Intent in = getIntent();
+        userEmail =  LoginActivity.userId;
         reqType = in.getStringExtra("req_mode");
 
         fullName = findViewById(R.id.et_name);
@@ -54,9 +69,23 @@ public class RegisterActivity extends AppCompatActivity {
                 strRefCode = refCode.getText().toString();
 
                 if (validateDetails(strFullName,strEmail,strMobile,strPass,strRePass)){
-                    Toast.makeText(RegisterActivity.this, "Registration Sucess!!", Toast.LENGTH_SHORT).show();
-                    Intent in = new Intent(RegisterActivity.this,LoginActivity.class);
-                    startActivity(in);
+                    UserAuthEntity srcUser = new UserAuthEntity().setUserName(userEmail);
+                    BasicUserEntity basicUserEntity = new BasicUserEntity(strFullName, strFullName, strEmail, strMobile, strRefCode);
+                    AddUserRequest adRequest = new AddUserRequest(srcUser,basicUserEntity);
+                    try {
+                       if(!PostRequest.sendRequest(API.ADDUSER, adRequest.toString()).equals(Constants.EMPTY_STR)){
+                        Toast.makeText(RegisterActivity.this, "Registration Sucess!!", Toast.LENGTH_SHORT).show();
+                        Intent in = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(in);
+                       }
+                       else {
+                           Toast.makeText(RegisterActivity.this, "Registration Failed!!", Toast.LENGTH_SHORT).show();
+                           Log.i("AddUser", "adding user failed: ");
+                       }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 }
 
 

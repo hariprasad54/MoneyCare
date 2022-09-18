@@ -11,15 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneycare.R;
+import com.example.moneycare.model.BasicUserEntity;
 import com.example.moneycare.model.TeamMember;
 
 import java.util.List;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
 
-    private List<TeamMember> teamMembers;
+    private List<BasicUserEntity> teamMembers;
 
-    public TeamAdapter(List<TeamMember> teamMembers) { this.teamMembers = teamMembers;}
+    public TeamAdapter(List<BasicUserEntity> teamMembers) { this.teamMembers = teamMembers;}
 
     @NonNull
     @Override
@@ -33,11 +34,11 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull TeamAdapter.ViewHolder holder, int position) {
 
-        int profilePic = teamMembers.get(position).getProfileImage();
+//        int profilePic = teamMembers.get(position).getProfileImage();
         String email = teamMembers.get(position).getEmail();
-        String phone = teamMembers.get(position).getPhoneNumber();
+        String phone = teamMembers.get(position).getMobileNo();
 
-        holder.setData(profilePic,email,phone);
+        holder.setData(1,email,phone);
 
     }
 

@@ -15,10 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moneycare.BankDetailsActivity;
 import com.example.moneycare.EditBankAccountActivity;
+import com.example.moneycare.LoginActivity;
 import com.example.moneycare.MainActivity;
 import com.example.moneycare.R;
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.PostRequest;
 import com.example.moneycare.model.BankAccount;
+import com.example.moneycare.model.UserAuthEntity;
+import com.example.moneycare.requests.BankAccountRequest;
 
+import java.io.IOException;
 import java.util.List;
 
 public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
@@ -38,9 +44,9 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         String bankName = bankAccounts.get(position).getBankName();
-        String ifscName = bankAccounts.get(position).getIfscCode();
-        String acNumber = bankAccounts.get(position).getAcNumber();
-        String acHolderName = bankAccounts.get(position).getAcHolderName();
+        String ifscName = bankAccounts.get(position).getIfsc();
+        String acNumber = bankAccounts.get(position).getAccountNo();
+        String acHolderName = bankAccounts.get(position).getName();
 
         holder.setData(bankName,ifscName,acNumber,acHolderName);
 
@@ -78,9 +84,16 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    bankAccounts.remove(getAbsoluteAdapterPosition());
-                                    notifyItemRemoved(getAbsoluteAdapterPosition());
+                                    BankAccount bankAccount = bankAccounts.remove(getAbsoluteAdapterPosition());
+                                    UserAuthEntity srcUser = new UserAuthEntity().setUserName(LoginActivity.userId);
+                                    BankAccountRequest br = new BankAccountRequest(srcUser, bankAccount);
+                                    try {
+                                        PostRequest.sendRequest(API.REMOVEBANKACCOUNT, br.toString());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                     notifyItemRangeChanged(getAbsoluteAdapterPosition(), bankAccounts.size());
+                                    notifyItemRemoved(getAbsoluteAdapterPosition());
                                 }
                             }).create().show();
                 }
@@ -91,9 +104,9 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
                 public void onClick(View view) {
                     Intent editBankIn = new Intent(view.getContext(),EditBankAccountActivity.class);
                     editBankIn.putExtra("bName",bankAccounts.get(getAbsoluteAdapterPosition()).getBankName());
-                    editBankIn.putExtra("acNumber",bankAccounts.get(getAbsoluteAdapterPosition()).getAcNumber());
-                    editBankIn.putExtra("ifscCode",bankAccounts.get(getAbsoluteAdapterPosition()).getIfscCode());
-                    editBankIn.putExtra("acHolderName",bankAccounts.get(getAbsoluteAdapterPosition()).getAcHolderName());
+                    editBankIn.putExtra("acNumber",bankAccounts.get(getAbsoluteAdapterPosition()).getAccountNo());
+                    editBankIn.putExtra("ifscCode",bankAccounts.get(getAbsoluteAdapterPosition()).getIfsc());
+                    editBankIn.putExtra("acHolderName",bankAccounts.get(getAbsoluteAdapterPosition()).getName());
                     view.getContext().startActivity(editBankIn);
                 }
             });
