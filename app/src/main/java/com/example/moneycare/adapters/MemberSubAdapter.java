@@ -57,6 +57,7 @@ public class MemberSubAdapter extends RecyclerView.Adapter<MemberSubAdapter.View
             tvPhone = itemView.findViewById(R.id.item_trn_phone_sub);
             tvTrnId = itemView.findViewById(R.id.item_trn_id_sub);
 
+
         }
 
         public void setData(String email, String phone, String trnId) {
@@ -71,7 +72,7 @@ public class MemberSubAdapter extends RecyclerView.Adapter<MemberSubAdapter.View
             MemberSub memberSub = memberSubList.get(position);
             String email = memberSub.getEmail();
             String trnId = memberSub.getTransactionID();
-            Toast.makeText(view.getContext(), email +"\n"+trnId,Toast.LENGTH_LONG).show();
+            Toast.makeText(view.getContext(), email +"\n"+trnId,Toast.LENGTH_SHORT).show();
             Intent aprovalIn = new Intent(view.getContext(), AprovalOrRejectedActivity.class);
             aprovalIn.putExtra("userEmail", email);
             aprovalIn.putExtra("transactionId", trnId);

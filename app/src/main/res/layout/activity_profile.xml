@@ -17,7 +17,7 @@
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginTop="60dp"
-            android:src="@drawable/ic_baseline_account_circle_24"
+            android:src="@drawable/user"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
             android:layout_marginStart="6dp"
             android:layout_marginTop="24dp"
             android:paddingBottom="10dp"
-            android:text="Full Name"
+            android:text="First Name"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <EditText
-            android:id="@+id/pro_fullname"
+            android:id="@+id/pro_firstName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
@@ -49,7 +49,7 @@
             android:includeFontPadding="true"
             android:inputType="textPersonName"
             android:paddingStart="10dp"
-            android:text="Your FullName"
+            android:text="Your First Name"
             android:textAlignment="textStart"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,16 +64,16 @@
             android:layout_marginStart="6dp"
             android:layout_marginTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Email"
+            android:text="Last Name"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.043"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pro_fullname" />
+            app:layout_constraintTop_toBottomOf="@+id/pro_firstName" />
 
         <EditText
-            android:id="@+id/pro_email"
+            android:id="@+id/pro_lastName"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
@@ -83,7 +83,7 @@
             android:includeFontPadding="true"
             android:inputType="textPersonName"
             android:paddingStart="10dp"
-            android:text="Your Email"
+            android:text="Your Last Name"
             android:textAlignment="textStart"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -98,16 +98,16 @@
             android:layout_marginStart="6dp"
             android:layout_marginTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Mobile"
+            android:text="Email"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.044"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pro_email" />
+            app:layout_constraintTop_toBottomOf="@+id/pro_lastName" />
 
         <EditText
-            android:id="@+id/pro_mobile"
+            android:id="@+id/pro_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
@@ -115,9 +115,9 @@
             android:background="@drawable/et_custom"
             android:ems="10"
             android:includeFontPadding="true"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:paddingStart="10dp"
-            android:text="Your Mobile Number"
+            android:text="Your Email"
             android:textAlignment="textStart"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -129,19 +129,19 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Alternate Mobile"
+            android:text="Mobile"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.051"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pro_mobile" />
+            app:layout_constraintTop_toBottomOf="@+id/pro_email" />
 
         <EditText
-            android:id="@+id/pro_alt_mobile"
+            android:id="@+id/pro_mobile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
@@ -150,9 +150,9 @@
             android:background="@drawable/et_custom"
             android:ems="10"
             android:includeFontPadding="true"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:paddingStart="10dp"
-            android:text="Alternate Mobile"
+            android:text="Your Mobile"
             android:textAlignment="textStart"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/btnSaveChanges"
@@ -172,34 +172,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pro_alt_mobile"
+            app:layout_constraintTop_toBottomOf="@+id/pro_mobile"
             app:layout_constraintVertical_bias="0.47" />
 
-        <RelativeLayout
-            android:layout_width="40dp"
-            android:layout_height="37dp"
-            android:layout_marginBottom="36dp"
-            android:background="@drawable/btn_round"
-            android:backgroundTint="#BE07D7F1"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
+        <TextView
+            android:id="@+id/pro_msgSaved"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="All changes saved!!"
+            android:textColor="#228326"
+            android:textSize="14dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.57"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.986">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/btn_upload_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="7dp"
-                android:layout_marginBottom="6dp"
-                android:background="@drawable/ic_baseline_camera_enhance_24"
-                android:foregroundGravity="center_vertical|center_horizontal" />
-        </RelativeLayout>
-
+        </TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

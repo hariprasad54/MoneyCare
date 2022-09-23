@@ -19,8 +19,11 @@ public class BasicUserEntity {
     }
 
     public BasicUserEntity(MemberSub user){
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
         this.email = user.getEmail();;
         this.mobileNo = user.getPhone();
+        this.transcationId = user.getTransactionID();
     }
     public BasicUserEntity(String firstName, String lastName, String email, String mobileNo, String transcationId) {
         this.firstName = firstName;

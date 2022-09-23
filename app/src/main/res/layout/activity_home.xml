@@ -1,422 +1,440 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
-        tools:context=".MainActivity" >
+        android:orientation="vertical"
+        android:scrollbars="vertical">
 
-        <RelativeLayout
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/appRelLayout">
-
-            <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/appBarLayout">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/design_default_color_primary"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_baseline_menu_24"
-                app:title="MoneyCare"
-                app:titleTextColor="@color/white" />
-            </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            tools:context=".MainActivity">
 
             <RelativeLayout
+                android:id="@+id/appRelLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/appBarLayout"
-                android:layout_marginTop="0dp"
-                android:background="@drawable/home_background">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/text_wel"
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Welcome"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/username_welcome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="50dp"
-                    android:text="User First Name Last Name"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/topAppBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/design_default_color_primary"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_baseline_menu_24"
+                        app:title="MoneyCare"
+                        app:titleTextColor="@color/white" >
+                        <ImageButton
+                            android:id="@+id/btn_logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:background="@drawable/ic_baseline_logout_24_white"
+                            />
+                    </com.google.android.material.appbar.MaterialToolbar>
+                </com.google.android.material.appbar.AppBarLayout>
 
-                <TextView
-                    android:id="@+id/last_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="2dp"
-                    android:gravity="end"
-                    android:text="Last Login 25/08/2022 17:58"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="italic" />
 
                 <RelativeLayout
-                    android:id="@+id/welcome_sub"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/username_welcome"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="20dp">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="170dp"
-                        android:layout_height="100dp"
-                        android:layout_alignParentStart="true"
-                        android:paddingBottom="5dp"
-                        app:cardCornerRadius="25dp"
-                        app:contentPaddingBottom="5dp">
-
-                        <TextView
-                            android:id="@+id/textView18"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="20dp"
-                            android:text="Referral Amount"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/textView19"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="50dp"
-                            android:text="1999"
-                            android:textColor="@color/black"
-                            android:textSize="30sp"
-                            android:textStyle="bold" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="170dp"
-                        android:layout_height="100dp"
-                        android:layout_alignParentEnd="true"
-                        android:paddingBottom="5dp"
-                        app:cardCornerRadius="25dp"
-                        app:contentPaddingBottom="5dp">
-
-                        <TextView
-                            android:id="@+id/textView20"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="20dp"
-                            android:text="Term Deposited"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/textView21"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="50dp"
-                            android:text="1999"
-                            android:textColor="@color/black"
-                            android:textSize="30sp"
-                            android:textStyle="bold" />
-
-                    </androidx.cardview.widget.CardView>
-                </RelativeLayout>
-
-                <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/welcome_card1"
-                    android:layout_below="@+id/welcome_sub"
-                    tools:context=".MainActivity">
-
-                    <GridLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="20dp"
-                        android:columnCount="2"
-                        android:scrollbars="vertical">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_add_user"
-                            android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:layout_rowSpan="1"
-                            android:layout_columnWeight="1"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="35dp">
-
-                            <ImageButton
-                                android:id="@+id/imb_add_user"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginEnd="0dp"
-                                android:background="@drawable/home_add_user"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:text="Add User"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_saved_bank_ac"
-                            android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:layout_columnWeight="1"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="35dp">
-
-                            <ImageButton
-                                android:id="@+id/imb_bank_accounts"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="8dp"
-                                android:background="@drawable/home_bank_accounts" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:text="Bank Accounts"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_your_team"
-                            android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:layout_columnWeight="1"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="35dp">
-
-                            <ImageButton
-                                android:id="@+id/imb_my_team"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="8dp"
-                                android:background="@drawable/home_myteam" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:text="My Team"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_view_or_edit"
-                            android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:layout_columnWeight="1"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="35dp">
-
-                            <ImageButton
-                                android:id="@+id/imb_profile"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="0dp"
-                                android:background="@drawable/home_profile" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:text="Profile"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_about_us"
-                            android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:layout_columnWeight="1"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="35dp">
-
-                            <ImageButton
-                                android:id="@+id/imb_about_us"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="0dp"
-                                android:background="@drawable/home_info" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:text="About us"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_rate_us"
-                            android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:layout_columnWeight="1"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="35dp">
-
-                            <ImageButton
-                                android:id="@+id/imb_rate_us"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="0dp"
-                                android:background="@drawable/home_rating" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:text="Rate Us"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </androidx.cardview.widget.CardView>
-
-                    </GridLayout>
-                </ScrollView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/welcome_card1"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center_horizontal"
-                    android:textAlignment="gravity"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    app:cardCornerRadius="0dp">
+                    android:layout_below="@+id/appBarLayout"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/purple_500"
+                    android:scaleType="fitXY">
 
                     <TextView
-                        android:id="@+id/txt_ref_code"
+                        android:id="@+id/text_wel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="20dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="Share Us"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="normal" />
+                        android:layout_marginTop="20dp"
+                        android:text="Welcome"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:id="@+id/social_icons"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/username_welcome"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
                         android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:gravity="center_horizontal">
+                        android:layout_marginTop="50dp"
+                        android:text="User First Name Last Name"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                        <ImageButton
-                            android:id="@+id/social_message_app"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginEnd="15dp"
-                            android:background="@drawable/ic_message_approved"
-                            tools:ignore="SpeakableTextPresentCheck" />
+                    <TextView
+                        android:id="@+id/last_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="end"
+                        android:text="Last Login 25/08/2022 17:58"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
 
-                        <ImageButton
-                            android:id="@+id/social_whatsapp"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginEnd="15dp"
-                            android:background="@drawable/ic_whatsapp" />
+                    <RelativeLayout
+                        android:id="@+id/welcome_sub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/username_welcome"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="20dp">
 
-                        <ImageButton
-                            android:id="@+id/social_instagram"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_marginEnd="10dp"
-                            android:background="@drawable/ic_instagram" />
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="170dp"
+                            android:layout_height="100dp"
+                            android:layout_alignParentStart="true"
+                            android:paddingBottom="5dp"
+                            app:cardCornerRadius="25dp"
+                            app:contentPaddingBottom="5dp">
 
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/textView18"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="20dp"
+                                android:text="Referral Amount"
+                                android:textSize="16sp" />
 
-                </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:id="@+id/textView19"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="50dp"
+                                android:text="1999"
+                                android:textColor="@color/black"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="170dp"
+                            android:layout_height="100dp"
+                            android:layout_alignParentEnd="true"
+                            android:paddingBottom="5dp"
+                            app:cardCornerRadius="25dp"
+                            app:contentPaddingBottom="5dp">
+
+                            <TextView
+                                android:id="@+id/textView20"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="20dp"
+                                android:text="Term Deposited"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/textView21"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="50dp"
+                                android:text="1999"
+                                android:textColor="@color/black"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+
+                        </androidx.cardview.widget.CardView>
+                    </RelativeLayout>
+
+                    <ScrollView
+                        android:id="@+id/scrolling_items"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/welcome_sub"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/background"
+                        tools:context=".MainActivity">
+
+                        <GridLayout
+                            android:id="@+id/grid_items"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="20dp"
+                            android:columnCount="2"
+                            android:scrollbars="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_add_user"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_rowSpan="1"
+                                android:layout_columnWeight="1"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:cardCornerRadius="35dp">
+
+                                <ImageButton
+                                    android:id="@+id/imb_add_user"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:background="@drawable/home_add_user"
+                                    tools:ignore="SpeakableTextPresentCheck" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Add User"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_saved_bank_ac"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_columnWeight="1"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:cardCornerRadius="35dp">
+
+                                <ImageButton
+                                    android:id="@+id/imb_bank_accounts"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@drawable/home_bank_accounts" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Bank Accounts"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_your_team"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_columnWeight="1"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:cardCornerRadius="35dp">
+
+                                <ImageButton
+                                    android:id="@+id/imb_my_team"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@drawable/home_myteam" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="My Team"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_view_or_edit"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_columnWeight="1"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:cardCornerRadius="35dp">
+
+                                <ImageButton
+                                    android:id="@+id/imb_profile"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:background="@drawable/home_profile" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Profile"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_share_us"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_columnWeight="1"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:cardCornerRadius="35dp">
+
+                                <ImageButton
+                                    android:id="@+id/imb_share_us"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:background="@drawable/ic_outline_share_24" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Share us"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_rate_us"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_columnWeight="1"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:cardCornerRadius="35dp">
+
+                                <ImageButton
+                                    android:id="@+id/imb_rate_us"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:background="@drawable/home_rating" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Rate Us"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_about_us"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_columnWeight="1"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:cardCornerRadius="35dp">
+
+                                <ImageButton
+                                    android:id="@+id/imb_about_us"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:background="@drawable/home_info" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="About us"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/version_info"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_columnWeight="1"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="5dp"
+                                app:cardCornerRadius="35dp">
+
+                                <ImageButton
+                                    android:id="@+id/imb_version"
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:background="@drawable/ic_outline_perm_device_information_24" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="20dp"
+                                    android:text="Version"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+                            </androidx.cardview.widget.CardView>
+
+                        </GridLayout>
+                    </ScrollView>
+                </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/my_navigation_items"
-            android:visibility="visible"/>
-    </androidx.drawerlayout.widget.DrawerLayout>
 
-</RelativeLayout>
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigation_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:visibility="visible"
+                app:headerLayout="@layout/nav_header"
+                app:menu="@menu/my_navigation_items" />
+        </androidx.drawerlayout.widget.DrawerLayout>
+
+    </RelativeLayout>

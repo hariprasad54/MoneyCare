@@ -1,6 +1,7 @@
 package com.example.moneycare.apicontroler;
 
 public class API {
+
     public static final String GETTOTALAMOIUNT =  "/getmytotalamount/";
     public static final String GETBANKACCOUNTS = "/getbankaccounts/";
     public static final String GETPENDINGAPPROVALS =  "/getpendingapprovals/";
@@ -10,5 +11,8 @@ public class API {
     public static final String APPROVEUSER = "/approveuser";
     public static final String ADDUSER = "/adduser";
     public static final String MAKELOGIN = "/makelogin";
+    public static final String GETUSERDETAILS = "/getuserdetails/";
+    public static final String EDITPROFILE = "/edituserdetails/";
+    public static final String RESETPASSWORD = "/resetpassword/";
 
 }

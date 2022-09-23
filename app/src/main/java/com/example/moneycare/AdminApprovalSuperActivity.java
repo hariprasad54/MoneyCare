@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.GameManager;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -47,7 +48,7 @@ public class AdminApprovalSuperActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewSuper;
     public static List<ApprovalRequest> memberSuperList;
-    private MemberSuperAdapter superAdapter;
+    public static MemberSuperAdapter superAdapter;
     private String userEmail;
     private  AlertDialog.Builder builder;
     @Override
@@ -108,10 +109,18 @@ public class AdminApprovalSuperActivity extends AppCompatActivity {
 
             case R.id.refresh_sup:
                 break;
+            /*case R.id.mitem_adduser:
+                Intent menuAddUserIn = new Intent(AdminApprovalSuperActivity.this, RegisterActivity.class);
+                menuAddUserIn.putExtra("req_mode","menuAddUser");
+                menuAddUserIn.putExtra("userEmail","admin");
+                startActivity(menuAddUserIn);
+                break;*/
 
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /*
     @Override
     public void onBackPressed() {
         builder = new AlertDialog.Builder(AdminApprovalSuperActivity.this);
@@ -127,7 +136,7 @@ public class AdminApprovalSuperActivity extends AppCompatActivity {
                     }
                 });
                 builder.create().show();
-    }
+    }*/
 
     @Override
     protected void onDestroy() {

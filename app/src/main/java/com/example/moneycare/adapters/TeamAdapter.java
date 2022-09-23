@@ -62,7 +62,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
 
         public void setData(int profilePic, String email, String phone) {
 
-            ivProfilePic.setImageResource(profilePic);
+            ivProfilePic.setImageResource(R.drawable.user1);
             tvEmail.setText(email);
             tvPhone.setText(phone);
         }

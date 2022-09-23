@@ -29,7 +29,7 @@ public class BankDetailsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    private List<BankAccount> bankAccountList;
+    public static List<BankAccount> bankAccountList;
     private BankAdapter adapter;
     private TextView accounts;
     private ExtendedFloatingActionButton fab;

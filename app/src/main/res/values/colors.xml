@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="underline">#FF000020</color>
     <color name="background">#ede7f6</color>
+    <color name="disable">#dcdcdc</color>
 </resources>

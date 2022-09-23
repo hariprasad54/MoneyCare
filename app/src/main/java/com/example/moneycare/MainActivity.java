@@ -15,12 +15,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Parcelable;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
@@ -30,9 +33,22 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.GetRequest;
+import com.example.moneycare.model.BasicUserEntity;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -41,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
     private String userEmail;
     private TextView tvEmail;
     private CircleImageView profilePic;
-    private ImageButton cardAddUser,cardMyTeam,cardBankAccounts,cardProfile,cardAboutUs,cardRateUs;
-    private ImageButton socialMessage,socialWhatsapp,socialInstagram;
+    private TextView welcome,lastLogin;
+    private ImageButton btnLogout;
+    private BasicUserEntity userProfile;
+    private ImageButton cardAddUser,cardMyTeam,cardBankAccounts,cardProfile,cardAboutUs,cardRateUs,cardShareUs,cardVersion;
 
 
     @Override
@@ -50,10 +68,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
+        btnLogout = findViewById(R.id.btn_logout);
+        welcome = findViewById(R.id.username_welcome);
+        lastLogin = findViewById(R.id.last_login);
+
 
         //quick links buttons
         cardAddUser = findViewById(R.id.imb_add_user);
@@ -62,20 +83,29 @@ public class MainActivity extends AppCompatActivity {
         cardProfile = findViewById(R.id.imb_profile);
         cardAboutUs = findViewById(R.id.imb_about_us);
         cardRateUs = findViewById(R.id.imb_rate_us);
+        cardShareUs = findViewById(R.id.imb_share_us);
+        cardVersion = findViewById(R.id.imb_version);
 
-        //social media buttons
-        socialMessage = findViewById(R.id.social_message_app);
-        socialWhatsapp = findViewById(R.id.social_whatsapp);
-        socialInstagram = findViewById(R.id.social_instagram);
 
-        //toolbar.inflateMenu(R.menu.menu_admin);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        lastLogin.setText(String.format("Login Time: %s", dateFormat.format(date)));
+
 
         Intent loginDetails = getIntent();
         userEmail = loginDetails.getStringExtra("userEmail");
 
+
+        try {
+            userProfile =  new ObjectMapper().readValue(GetRequest.sendRequest(API.GETUSERDETAILS+LoginActivity.userId), new TypeReference<BasicUserEntity>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        welcome.setText(String.format("%s %s", userProfile.getFirstName(), userProfile.getLastName()));
         View nhView = navigationView.getHeaderView(0);
         tvEmail = nhView.findViewById(R.id.emailUser);
-        tvEmail.setText(userEmail);
+        tvEmail.setText(userProfile.getEmail());
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -124,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_change_pass:
                         Toast.makeText(MainActivity.this, "Change Password is Clicked",Toast.LENGTH_SHORT).show();
-                        Intent in = new Intent(getApplicationContext(), OtpValidationActivity.class);
+                        Intent in = new Intent(getApplicationContext(), ChangePasswordActivity.class);
                         in.putExtra("from","change_pass");
                         startActivity(in);
                         break;
@@ -186,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent addUserIn = new Intent(MainActivity.this,RegisterActivity.class);
+                addUserIn.putExtra("userEmail",userEmail);
                 startActivity(addUserIn);
             }
         });
@@ -230,33 +261,99 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //social media links listeners
-
-        socialMessage.setOnClickListener(new View.OnClickListener() {
+        cardShareUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
+                List<Intent> targetShareIntents = new ArrayList<Intent>();
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                PackageManager pm = MainActivity.this.getPackageManager();
+                List<ResolveInfo> resInfos = pm.queryIntentActivities(shareIntent, 0);
+                if (!resInfos.isEmpty()) {
+                    System.out.println("Have package");
+                    for (ResolveInfo resInfo : resInfos) {
+                        String packageName = resInfo.activityInfo.packageName;
+                        Log.i("Package Name", packageName);
 
-                }catch (ActivityNotFoundException e){
-                    Log.d("error","Activity not found");
+                        if (packageName.contains("com.twitter.android") || packageName.contains("com.facebook.katana")
+                                || packageName.contains("com.whatsapp") || packageName.contains("com.google.android.apps.plus")
+                                || packageName.contains("com.google.android.talk")
+                                || packageName.contains("com.google.android.gm") || packageName.contains("com.facebook.orca")
+                                || packageName.contains("com.yahoo.mobile") || packageName.contains("com.android.messaging")
+                                || packageName.contains("com.android.mms")|| packageName.contains("com.android.bluetooth")
+                                || packageName.contains("com.google.android.apps.messaging")) {
+                            Intent intent = new Intent();
+
+                            intent.setComponent(new ComponentName(packageName, resInfo.activityInfo.name));
+                            intent.putExtra("AppName", resInfo.loadLabel(pm).toString());
+                            intent.setAction(Intent.ACTION_SEND);
+                            intent.setType("text/plain");
+                            intent.putExtra(Intent.EXTRA_TEXT, "https://website.com/");
+                            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_text));
+                            intent.setPackage(packageName);
+                            targetShareIntents.add(intent);
+                        }
+                    }
+                    if (!targetShareIntents.isEmpty()) {
+                        Collections.sort(targetShareIntents, new Comparator<Intent>() {
+                            @Override
+                            public int compare(Intent o1, Intent o2) {
+                                return o1.getStringExtra("AppName").compareTo(o2.getStringExtra("AppName"));
+                            }
+                        });
+                        Intent chooserIntent = Intent.createChooser(targetShareIntents.remove(0), "Select app to share");
+                        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetShareIntents.toArray(new Parcelable[]{}));
+                        startActivity(chooserIntent);
+                    } else {
+                        Toast.makeText(MainActivity.this, "No app to share.", Toast.LENGTH_LONG).show();
+                    }
                 }
-
             }
         });
 
-        socialInstagram.setOnClickListener(new View.OnClickListener() {
+        cardVersion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent versionIn = new Intent(MainActivity.this,VersionInfoActivity.class);
+                startActivity(versionIn);
+            }
+        });
+
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                Toast.makeText(MainActivity.this, "logout is clicked",Toast.LENGTH_SHORT).show();
+
+                //logout popup
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Confirmation!!").
+                        setMessage("You sure, that you want to logout?");
+                builder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(getApplicationContext(),
+                                        LoginActivity.class);
+                                startActivity(i);
+                            }
+                        });
+                builder.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert11 = builder.create();
+                alert11.show();
+
             }
         });
 
-        socialWhatsapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-            }
-        });
+
+
     }
 
     @Override

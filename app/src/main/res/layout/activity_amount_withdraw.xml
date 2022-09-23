@@ -58,7 +58,7 @@
         />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_referral_amt"
+        android:id="@+id/card_bank_accounts"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"

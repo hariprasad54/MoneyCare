@@ -10,8 +10,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,13 +26,13 @@ import java.io.IOException;
  */
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText fullName,email,mobile,pass,repass,refCode;
+    private EditText firstName,lastName,email,mobile,refCode;
     private Button btnReg,btnLogMove;
     private String reqType;
     private TextView swipeLeft;
     private String userEmail;
 
-    private  String strFullName,strEmail,strMobile,strPass,strRePass,strRefCode;
+    private  String strFirstName,strLastName,strEmail,strMobile,strPass,strRePass,strRefCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +40,15 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         Intent in = getIntent();
+
+        //userEmail = in.getStringExtra("userEmail");
         userEmail =  LoginActivity.userId;
         reqType = in.getStringExtra("req_mode");
 
-        fullName = findViewById(R.id.et_name);
-        email = findViewById(R.id.et_emailreg);
-        mobile = findViewById(R.id.et_phone);
-        pass = findViewById(R.id.et_passwordreg);
-        repass = findViewById(R.id.et_repassword);
+        firstName = findViewById(R.id.et_name);
+        lastName = findViewById(R.id.et_emailreg);
+        email = findViewById(R.id.et_phone);
+        mobile = findViewById(R.id.et_passwordreg);
         refCode = findViewById(R.id.et_ref_code);
         btnReg = findViewById(R.id.btn_register);
         btnLogMove = findViewById(R.id.btnLogMove);
@@ -61,22 +60,21 @@ public class RegisterActivity extends AppCompatActivity {
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                strFullName = fullName.getText().toString();
+                strFirstName = firstName.getText().toString();
+                strLastName = lastName.getText().toString();
                 strEmail = email.getText().toString();
                 strMobile = mobile.getText().toString();
-                strPass = pass.getText().toString();
-                strRePass = repass.getText().toString();
                 strRefCode = refCode.getText().toString();
 
-                if (validateDetails(strFullName,strEmail,strMobile,strPass,strRePass)){
+                if (validateDetails(strFirstName,strLastName,strEmail,strMobile,strRefCode)){
                     UserAuthEntity srcUser = new UserAuthEntity().setUserName(userEmail);
-                    BasicUserEntity basicUserEntity = new BasicUserEntity(strFullName, strFullName, strEmail, strMobile, strRefCode);
+                    BasicUserEntity basicUserEntity = new BasicUserEntity(strFirstName, strLastName, strEmail, strMobile, strRefCode);
                     AddUserRequest adRequest = new AddUserRequest(srcUser,basicUserEntity);
                     try {
                        if(!PostRequest.sendRequest(API.ADDUSER, adRequest.toString()).equals(Constants.EMPTY_STR)){
                         Toast.makeText(RegisterActivity.this, "Registration Sucess!!", Toast.LENGTH_SHORT).show();
-                        Intent in = new Intent(RegisterActivity.this, MainActivity.class);
-                        startActivity(in);
+                        //Intent in = new Intent(RegisterActivity.this, MainActivity.class);
+                        //startActivity(in);
                        }
                        else {
                            Toast.makeText(RegisterActivity.this, "Registration Failed!!", Toast.LENGTH_SHORT).show();
@@ -112,9 +110,9 @@ public class RegisterActivity extends AppCompatActivity {
         return TextUtils.isEmpty(str);
     }
 
-    boolean validateDetails(String strFullName, String strEmail,String strMobile, String pass, String strRePass){
+    boolean validateDetails(String strFirstName, String strLastName,String strEmail,String strMobile, String strRefCode){
         boolean stat = true;
-        if (isEmpty(strFullName) ||isEmpty(strEmail) || isEmpty(strMobile) || isEmpty(strPass) ||isEmpty(strRePass)) {
+        if (isEmpty(strFirstName) ||isEmpty(strEmail) || isEmpty(strMobile) || isEmpty(strLastName) ||isEmpty(strRefCode)) {
             Toast t = Toast.makeText(this, "All Fields Mandatory to Register!", Toast.LENGTH_LONG);
             t.show();
             stat = false;
@@ -127,13 +125,13 @@ public class RegisterActivity extends AppCompatActivity {
                     t.show();
                     stat = false;
                 }
-                else{
+               /* else{
                         if (pass.length() < 6 || !(strPass.equals(strRePass))){
                             Toast t = Toast.makeText(this, "Invalid Password/Password not Matched", Toast.LENGTH_LONG);
                             t.show();
                             stat = false;
                         }
-                }
+                }*/
         }
 
         return stat;

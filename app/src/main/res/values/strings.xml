@@ -33,4 +33,5 @@
     <string name="bank_name">Bank Name</string>
     <string name="str_open">Open</string>
     <string name="str_close">Close</string>
+    <string name="share_text">App Link</string>
 </resources>

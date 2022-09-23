@@ -4,4 +4,7 @@
     <item
         android:id="@+id/refresh_sup"
         android:title="Refresh" />
+    <item
+        android:id="@+id/mitem_adduser"
+        android:title="Add User" />
 </menu>

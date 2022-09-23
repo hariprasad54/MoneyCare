@@ -21,7 +21,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyReferralsActivity extends AppCompatActivity {
+public class  MyReferralsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private TextView refBal,depBal;

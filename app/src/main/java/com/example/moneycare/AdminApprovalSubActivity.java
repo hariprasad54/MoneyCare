@@ -26,7 +26,7 @@ public class AdminApprovalSubActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewSub;
     public static List<MemberSub> memberSubList;
-    private MemberSubAdapter subAdapter;
+    public static MemberSubAdapter subAdapter;
     public static String srcUsrerId;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -40,7 +40,7 @@ public class AdminApprovalSubActivity extends AppCompatActivity {
         memberSubList = new ArrayList<>();
         for(ApprovalRequest ar : AdminApprovalSuperActivity.memberSuperList){
            if(ar.srcUser.getUserName().equals(srcUsrerId))
-               memberSubList.add(new MemberSub(ar.targetUser.getEmail(), ar.targetUser.getMobileNo(), ar.targetUser.getTranscationId()));
+               memberSubList.add(new MemberSub(ar.targetUser.getFirstName(),ar.targetUser.getLastName(),ar.targetUser.getEmail(), ar.targetUser.getMobileNo(), ar.targetUser.getTranscationId()));
         }
 //        memberSubList.add(new MemberSub("abc@abc.com","9182736450","Trn123456789"));
 //        memberSubList.add(new MemberSub("def@abc.com","1234567890","Trn918273645"));

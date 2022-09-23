@@ -30,6 +30,7 @@ import com.example.moneycare.apicontroler.API;
 import com.example.moneycare.apicontroler.PostRequest;
 import com.example.moneycare.model.LoginType;
 import com.example.moneycare.model.UserAuthEntity;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -51,7 +52,8 @@ import javax.net.ssl.HttpsURLConnection;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText email,password;
+    private EditText email;
+    private TextInputLayout password;
     private Button btnLogin,btnRegMove;
     private TextView forgotPass;
     public static String userId;
@@ -74,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 strEmail = email.getText().toString();
-                pass = password.getText().toString();
+                pass = password.getEditText().getText().toString();
                 //if(validateDetails(strEmail,pass)) {
                 if(true) {
                     UserAuthEntity loginItem = new UserAuthEntity(strEmail, pass);
@@ -97,9 +99,18 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else if(response.equalsIgnoreCase("\"adminlogin\"")){
                         Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
-                        Intent in = new Intent(LoginActivity.this,AdminApprovalSuperActivity.class);
+                        Intent in = new Intent(LoginActivity.this,AdminActivity.class);
                         in.putExtra("userEmail",strEmail);
                         adminUserId = strEmail;
+                        userId = strEmail;
+                        startActivity(in);
+                        finish();
+                    }
+                    else if(response.equalsIgnoreCase("\"firstime\"")){
+                        Toast.makeText(LoginActivity.this, "Login Suceess", Toast.LENGTH_LONG).show();
+                        Intent in = new Intent(LoginActivity.this,ChangePasswordActivity.class);
+                        in.putExtra("userEmail",strEmail);
+                        userId = strEmail;
                         startActivity(in);
                         finish();
                     }
@@ -142,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                         else {
                             //check for the email in DB
                             //if exists then otp validation
-                            Intent forgotPassIn = new Intent(LoginActivity.this,OtpValidationActivity.class);
+                            Intent forgotPassIn = new Intent(LoginActivity.this,ChangePasswordActivity.class);
                             forgotPassIn.putExtra("from","change_pass");
                             startActivity(forgotPassIn);
                             finish();

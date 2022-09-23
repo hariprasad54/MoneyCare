@@ -1,17 +1,45 @@
 package com.example.moneycare.model;
 
 public class MemberSub {
+
+    private String firstName;
+    private String lastName;
     private String Email;
     private String phone;
     private String TransactionID;
 
     public MemberSub(String email, String phone, String transactionID) {
-        Email = email;
+        this.Email = email;
         this.phone = phone;
-        TransactionID = transactionID;
+        this.TransactionID = transactionID;
     }
 
+    public MemberSub(String firstName, String lastName, String email, String phone, String transactionID) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.Email = email;
+        this.phone = phone;
+        this.TransactionID = transactionID;
+    }
+
+
     public MemberSub() {
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -19,7 +47,7 @@ public class MemberSub {
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.Email = email;
     }
 
     public String getPhone() {
@@ -35,6 +63,6 @@ public class MemberSub {
     }
 
     public void setTransactionID(String transactionID) {
-        TransactionID = transactionID;
+        this.TransactionID = transactionID;
     }
 }

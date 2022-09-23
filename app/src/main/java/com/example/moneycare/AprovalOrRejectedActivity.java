@@ -75,7 +75,7 @@ public class AprovalOrRejectedActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int selectID = statGroup.getCheckedRadioButtonId();
                 if (selectID == -1){
-                    Toast.makeText(getApplicationContext(),"Nothing Selected",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Nothing Selected",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     MemberSub curUser = new MemberSub();
@@ -92,10 +92,13 @@ public class AprovalOrRejectedActivity extends AppCompatActivity {
                                 .setUserName(AdminApprovalSubActivity.srcUsrerId),
                                 new BasicUserEntity(curUser)).toString());
                         AdminApprovalSubActivity.memberSubList.remove(curUser);
+                        //AdminApprovalSuperActivity.memberSuperList.remove(AdminApprovalSubActivity.srcUsrerId);
+                        AdminApprovalSubActivity.subAdapter.notifyDataSetChanged();
+                        //AdminApprovalSuperActivity.superAdapter.notifyDataSetChanged();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(getApplicationContext(),"Submitted",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Submitted",Toast.LENGTH_SHORT).show();
                 }
             }
         });

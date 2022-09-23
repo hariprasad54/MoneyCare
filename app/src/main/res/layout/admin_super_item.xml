@@ -17,8 +17,8 @@
 
     <TextView
         android:id="@+id/mem_email_admin_sup"
-        android:layout_width="307dp"
-        android:layout_height="31dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -30,7 +30,7 @@
         android:gravity="center_vertical"
         android:text="Email"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
     <View
         android:id="@+id/divider3"

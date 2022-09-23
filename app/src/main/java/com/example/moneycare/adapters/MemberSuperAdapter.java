@@ -66,12 +66,13 @@ public class MemberSuperAdapter extends RecyclerView.Adapter<MemberSuperAdapter.
             txtEmail = itemView.findViewById(R.id.mem_email_admin_sup);
             profilePic = itemView.findViewById(R.id.mem_profile_pic_admin_sup);
 
+
         }
 
         public void setData(String email, int profileUrl) {
 
             txtEmail.setText(email);
-            profilePic.setImageResource(profileUrl);
+            profilePic.setImageResource(R.drawable.user1);
 
         }
 
@@ -80,10 +81,12 @@ public class MemberSuperAdapter extends RecyclerView.Adapter<MemberSuperAdapter.
            int position = this.getAbsoluteAdapterPosition();
            ApprovalRequest memberSuper = supMembersList.get(position);
            String email = memberSuper.srcUser.getUserName();
-            Toast.makeText(view.getContext(), email,Toast.LENGTH_LONG).show();
+            Toast.makeText(view.getContext(), email,Toast.LENGTH_SHORT).show();
             Intent subIn = new Intent(view.getContext(), AdminApprovalSubActivity.class);
             subIn.putExtra("srcUserId",email);
             view.getContext().startActivity(subIn);
+            /*notifyItemRangeChanged(getAbsoluteAdapterPosition(), supMembersList.size());
+            notifyItemRemoved(getAbsoluteAdapterPosition());*/
         }
     }
 }
