@@ -1,6 +1,6 @@
-1. Edit Bank Account (Two bank accounts showing both old one and edited one)
-2. Super user need to be removed for empty sub users
-3. After Approving Again coming when i open that super user
-4. Admin added users are showing in Your Team
-5. User first name and lastname getting null after approving
+1. Edit Bank Account (Two bank accounts showing both old one and edited one) - done
+2. Super user need to be removed for empty sub users - done
+3. After Approving Again coming when i open that super user - done
+4. Admin added users are showing in Your Team - done
+5. User first name and lastname getting null after approving - done
 6.

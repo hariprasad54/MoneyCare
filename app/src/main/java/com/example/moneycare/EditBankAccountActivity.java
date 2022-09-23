@@ -44,6 +44,9 @@ public class EditBankAccountActivity extends AppCompatActivity {
         saveStaus = findViewById(R.id.status_edit_account);
         bAcHolderName = findViewById(R.id.et_name_in_edit_account);
 
+        bAcNumber.setFocusable(false);
+        bAcNumber.setBackground(getResources().getDrawable(R.drawable.et_custom_disable));
+
         Intent bDetails = getIntent();
         bNameIntent = bDetails.getStringExtra("bName");
         accountNumberIntent = bDetails.getStringExtra("acNumber");
