@@ -7,7 +7,7 @@
     tools:context=".RateUsActivity">
 
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/ratings_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -31,7 +31,7 @@
         android:contentDescription="rating"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+        app:layout_constraintTop_toBottomOf="@+id/ratings_title" />
 
     <EditText
         android:id="@+id/et_rating_feedback"

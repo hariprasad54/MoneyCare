@@ -25,10 +25,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".WithdrawRequestsActivity"
+            android:name=".ApproveWithdrawRequestActivity"
             android:theme="@style/Theme.MoneyCare.WithActionBar"
-            android:label="Withdraw Requests"
+            android:label="Withdraw Request Status"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".WithdrawRequestsActivity"
+            android:exported="false"
+            android:label="Withdraw Requests"
+            android:theme="@style/Theme.MoneyCare.WithActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

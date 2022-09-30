@@ -34,4 +34,5 @@
     <string name="str_open">Open</string>
     <string name="str_close">Close</string>
     <string name="share_text">App Link</string>
+    <string name="terms_and_conditions">I Agree to Terms and Conditions</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.moneycare.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moneycare.ApproveWithdrawRequestActivity;
+import com.example.moneycare.AprovalOrRejectedActivity;
 import com.example.moneycare.R;
 import com.example.moneycare.model.WithdrawRequest;
 
@@ -66,8 +69,14 @@ public class WithdrawRequestAdapter extends RecyclerView.Adapter<WithdrawRequest
         @Override
         public void onClick(View view) {
             int position = this.getAbsoluteAdapterPosition();
-            String userId = withdrawRequestList.get(position).getUserId();
+            WithdrawRequest withdrawRequest = withdrawRequestList.get(position);
+            String userId = withdrawRequest.getUserId();
+            String amount = withdrawRequest.getAmount();
             Toast.makeText(view.getContext(), userId+" Clicked", Toast.LENGTH_SHORT).show();
+            Intent aprovalIn = new Intent(view.getContext(), ApproveWithdrawRequestActivity.class);
+            aprovalIn.putExtra("userId", userId);
+            aprovalIn.putExtra("amount", amount);
+            view.getContext().startActivity(aprovalIn);
         }
     }
 }

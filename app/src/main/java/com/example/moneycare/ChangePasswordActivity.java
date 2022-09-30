@@ -56,7 +56,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         }
                         else if (response.equalsIgnoreCase("success "+password)){
                             Toast.makeText(ChangePasswordActivity.this, "Password Changed!!", Toast.LENGTH_SHORT).show();
-                            Intent in = new Intent(ChangePasswordActivity.this,MainActivity.class);
+                            Intent in = new Intent(ChangePasswordActivity.this,LoginActivity.class);
                             startActivity(in);
                         }
                     } catch (IOException e) {
@@ -81,11 +81,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }*/
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-    }
+    }*/
 }

@@ -33,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
     private boolean writeStoragePermission = false;
     private boolean smsPermission = false;
     private boolean cameraPermission;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

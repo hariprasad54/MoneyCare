@@ -14,5 +14,7 @@ public class API {
     public static final String GETUSERDETAILS = "/getuserdetails/";
     public static final String EDITPROFILE = "/edituserdetails/";
     public static final String RESETPASSWORD = "/resetpassword/";
+    public static final String ADDRATING = "/addrating/";
+    public static final String GETUSERRATING = "/getuserrating/";
 
 }

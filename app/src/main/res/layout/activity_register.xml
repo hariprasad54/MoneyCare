@@ -90,10 +90,19 @@
         android:hint="Transaction ID"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:padding="15dp"
         android:inputType="text"
         android:background="@drawable/et_custom"
+        android:textSize="15sp" />
+    <RadioButton
+        android:id="@+id/radio_terms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/terms_and_conditions"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
         android:textSize="15sp" />
 
     <Button

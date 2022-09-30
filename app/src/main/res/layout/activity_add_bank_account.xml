@@ -140,7 +140,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
+    <RadioButton
+        android:id="@+id/radio_terms_bankac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/terms_and_conditions"
+        app:layout_constraintTop_toBottomOf="@+id/et_ifsc_code_in_add_account"
+        />
     <Button
         android:id="@+id/btn_save_details"
         android:layout_width="wrap_content"
@@ -150,7 +158,7 @@
         android:text="Save Acocunt Details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ifsc_code_in_add_account" />
+        app:layout_constraintTop_toBottomOf="@+id/radio_terms_bankac" />
 
     <TextView
         android:id="@+id/status_add_account"

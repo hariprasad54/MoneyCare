@@ -28,7 +28,7 @@ public class EditBankAccountActivity extends AppCompatActivity {
     private TextView saveStaus;
     private Button btnSaveDetails;
 
-    private String bankName,AcNumber,IfscCode;
+    private String bankName,AcNumber,IfscCode,acHolderName;
     private String bNameIntent,accountNumberIntent,ifscCodeIntent,acHolderNameIntent;
 
 
@@ -60,10 +60,11 @@ public class EditBankAccountActivity extends AppCompatActivity {
                 bankName = bName.getText().toString();
                 AcNumber = bAcNumber.getText().toString();
                 IfscCode = bIfscCode.getText().toString();
+                acHolderName = bAcHolderName.getText().toString();
 
-                if(validateDetails(bankName,AcNumber,IfscCode)){
+                if(validateDetails(bankName,AcNumber,IfscCode,acHolderName)){
 
-                    BankAccount bankAccount = new BankAccount(AcNumber,bankName, IfscCode, "NameToBeFixed");
+                    BankAccount bankAccount = new BankAccount(AcNumber,bankName, IfscCode, acHolderName);
                     UserAuthEntity srcUser = new UserAuthEntity().setUserName(LoginActivity.userId);
                     BankAccountRequest br = new BankAccountRequest(srcUser, bankAccount);
                     try {
@@ -89,9 +90,9 @@ public class EditBankAccountActivity extends AppCompatActivity {
     boolean isEmpty(String str) {
         return TextUtils.isEmpty(str);
     }
-    private boolean validateDetails(String bankName, String acNumber, String ifscCode) {
+    private boolean validateDetails(String bankName, String acNumber, String ifscCode, String holderName) {
         boolean stat = true;
-        if (isEmpty(bankName) ||isEmpty(acNumber) || isEmpty(ifscCode)) {
+        if (isEmpty(bankName) ||isEmpty(acNumber) || isEmpty(ifscCode) || isEmpty(holderName)) {
             Toast t = Toast.makeText(this, "All Fields Mandatory to Save!", Toast.LENGTH_LONG);
             t.show();
             stat = false;
