@@ -34,7 +34,7 @@
                 android:layout_marginEnd="152dp"
                 android:layout_marginBottom="5dp"
                 android:paddingTop="5dp"
-                android:text="Referral Amount"
+                android:text="Amount Earned"
                 android:textSize="16sp" />
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_marginEnd="151dp"
                 android:layout_marginBottom="6dp"
                 android:paddingTop="5dp"
-                android:text="Deposited Amount"
+                android:text="Term Deposited"
                 android:textSize="16sp" />
 
             <TextView

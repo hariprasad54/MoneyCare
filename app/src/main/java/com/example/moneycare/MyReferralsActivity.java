@@ -15,8 +15,14 @@ import android.widget.TextView;
 
 import com.example.moneycare.adapters.TeamAdapter;
 import com.example.moneycare.adapters.TransactionAdapter;
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.GetRequest;
+import com.example.moneycare.model.BankAccount;
 import com.example.moneycare.model.Transaction;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,19 +39,25 @@ public class  MyReferralsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_referrals);
-
         refBal = findViewById(R.id.ref_bal_tot);
         depBal = findViewById(R.id.amount_dep_total);
         btnWithdraw = findViewById(R.id.btn_withdraw);
         btnDeposit = findViewById(R.id.btn_deposit);
 
-        transactionList = new ArrayList<Transaction>();
-        transactionList.add(new Transaction("TrnID: TRN100010001111","EMAIL: abc@abc.com","Date: 21/08/2022","19999"));
-        transactionList.add(new Transaction("TrnID: TRN110011001000","EMAIL: def@abc.com","Date: 21/08/2022","24999"));
-        transactionList.add(new Transaction("TrnID: TRN101010111022","EMAIL: ghi@abc.com","Date: 21/08/2022","32999"));
-        transactionList.add(new Transaction("TrnID: TRN100010001321","EMAIL: jkl@abc.com","Date: 21/08/2022","1345999"));
-        transactionList.add(new Transaction("TrnID: TRN100010043213","EMAIL: mno@abc.com","Date: 21/08/2022","999"));
+        refBal.setText(String.valueOf(MainActivity.totalEarnings));
 
+        transactionList = new ArrayList<Transaction>();
+        try {
+            transactionList = new ObjectMapper().readValue(GetRequest.sendRequest(API.GETUSERTRANSACTIONS+LoginActivity.userId), new TypeReference<List<Transaction>>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*transactionList.add(new Transaction("TrnID: TRN100010001111","Email: abc@abc.com","Date: 21/08/2022","19999"));
+        transactionList.add(new Transaction("TrnID: TRN110011001000","Email: def@abc.com","Date: 21/08/2022","24999"));
+        transactionList.add(new Transaction("TrnID: TRN101010111022","EMail: ghi@abc.com","Date: 21/08/2022","32999"));
+        transactionList.add(new Transaction("TrnID: TRN100010001321","Email: jkl@abc.com","Date: 21/08/2022","1345999"));
+        transactionList.add(new Transaction("TrnID: TRN100010043213","Email: mno@abc.com","Date: 21/08/2022","999"));
+*/
         btnDeposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -24,12 +24,12 @@ import java.io.IOException;
 
 public class EditBankAccountActivity extends AppCompatActivity {
 
-    private EditText bName,bAcNumber,bIfscCode,bAcHolderName;
+    private EditText bName,bAcNumber,bIfscCode,bAcHolderName,bUpi;
     private TextView saveStaus;
     private Button btnSaveDetails;
 
-    private String bankName,AcNumber,IfscCode,acHolderName;
-    private String bNameIntent,accountNumberIntent,ifscCodeIntent,acHolderNameIntent;
+    private String bankName,AcNumber,IfscCode,acHolderName,UpiId;
+    private String bNameIntent,accountNumberIntent,ifscCodeIntent,acHolderNameIntent,bUpiID;
 
 
     @Override
@@ -43,6 +43,7 @@ public class EditBankAccountActivity extends AppCompatActivity {
         btnSaveDetails = findViewById(R.id.btn_save_details);
         saveStaus = findViewById(R.id.status_edit_account);
         bAcHolderName = findViewById(R.id.et_name_in_edit_account);
+        bUpi = findViewById(R.id.et_upi_in_edit_account);
 
         bAcNumber.setFocusable(false);
         bAcNumber.setBackground(getResources().getDrawable(R.drawable.et_custom_disable));
@@ -52,7 +53,8 @@ public class EditBankAccountActivity extends AppCompatActivity {
         accountNumberIntent = bDetails.getStringExtra("acNumber");
         ifscCodeIntent = bDetails.getStringExtra("ifscCode");
         acHolderNameIntent = bDetails.getStringExtra("acHolderName");
-        initDetails(bNameIntent,accountNumberIntent,ifscCodeIntent,acHolderNameIntent);
+        bUpiID = bDetails.getStringExtra("UPI");
+        initDetails(bNameIntent,accountNumberIntent,ifscCodeIntent,acHolderNameIntent,bUpiID);
 
         btnSaveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +63,11 @@ public class EditBankAccountActivity extends AppCompatActivity {
                 AcNumber = bAcNumber.getText().toString();
                 IfscCode = bIfscCode.getText().toString();
                 acHolderName = bAcHolderName.getText().toString();
+                UpiId = bUpi.getText().toString();
 
-                if(validateDetails(bankName,AcNumber,IfscCode,acHolderName)){
+                if(validateDetails(bankName,AcNumber,IfscCode,acHolderName,UpiId)){
 
-                    BankAccount bankAccount = new BankAccount(AcNumber,bankName, IfscCode, acHolderName);
+                    BankAccount bankAccount = new BankAccount(AcNumber,bankName, IfscCode, UpiId,acHolderName);
                     UserAuthEntity srcUser = new UserAuthEntity().setUserName(LoginActivity.userId);
                     BankAccountRequest br = new BankAccountRequest(srcUser, bankAccount);
                     try {
@@ -80,19 +83,20 @@ public class EditBankAccountActivity extends AppCompatActivity {
 
     }
 
-    private void initDetails(String bNameIntent, String accountNumberIntent, String ifscCodeIntent, String acHolderNameIntent) {
+    private void initDetails(String bNameIntent, String accountNumberIntent, String ifscCodeIntent, String acHolderNameIntent, String bUpiID) {
         bName.setText(bNameIntent);
         bAcNumber.setText(accountNumberIntent);
         bIfscCode.setText(ifscCodeIntent);
         bAcHolderName.setText(acHolderNameIntent);
+        bUpi.setText(bUpiID);
     }
 
     boolean isEmpty(String str) {
         return TextUtils.isEmpty(str);
     }
-    private boolean validateDetails(String bankName, String acNumber, String ifscCode, String holderName) {
+    private boolean validateDetails(String bankName, String acNumber, String ifscCode, String holderName, String strUpi) {
         boolean stat = true;
-        if (isEmpty(bankName) ||isEmpty(acNumber) || isEmpty(ifscCode) || isEmpty(holderName)) {
+        if (isEmpty(bankName) ||isEmpty(acNumber) || isEmpty(ifscCode) || isEmpty(holderName)|| isEmpty(strUpi)) {
             Toast t = Toast.makeText(this, "All Fields Mandatory to Save!", Toast.LENGTH_LONG);
             t.show();
             stat = false;

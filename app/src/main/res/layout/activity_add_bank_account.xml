@@ -140,6 +140,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
+    <TextView
+        android:id="@+id/textView_ifsc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:padding="10dp"
+        android:text="UPI ID"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ifsc_code_in_add_account" />
+    <EditText
+        android:id="@+id/et_upi_in_add_account"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/et_custom"
+        android:ems="10"
+        android:hint="Enter UPI ID"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_ifsc" />
     <RadioButton
         android:id="@+id/radio_terms_bankac"
         android:layout_width="match_parent"
@@ -147,7 +171,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:text="@string/terms_and_conditions"
-        app:layout_constraintTop_toBottomOf="@+id/et_ifsc_code_in_add_account"
+        app:layout_constraintTop_toBottomOf="@+id/et_upi_in_add_account"
         />
     <Button
         android:id="@+id/btn_save_details"

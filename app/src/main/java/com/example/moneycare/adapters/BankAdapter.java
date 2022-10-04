@@ -107,6 +107,7 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.ViewHolder> {
                     editBankIn.putExtra("acNumber",bankAccounts.get(getAbsoluteAdapterPosition()).getAccountNo());
                     editBankIn.putExtra("ifscCode",bankAccounts.get(getAbsoluteAdapterPosition()).getIfsc());
                     editBankIn.putExtra("acHolderName",bankAccounts.get(getAbsoluteAdapterPosition()).getName());
+                    editBankIn.putExtra("UPI",bankAccounts.get(getAbsoluteAdapterPosition()).getUpiId());
                     view.getContext().startActivity(editBankIn);
                 }
             });

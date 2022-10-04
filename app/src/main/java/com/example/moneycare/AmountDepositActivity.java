@@ -55,7 +55,7 @@ public class AmountDepositActivity extends AppCompatActivity {
             for (int i = 0; i < buttons; i++) {
                 rbn = new RadioButton(this);
                 rbn.setId(View.generateViewId());
-                rbn.setText(BankDetailsActivity.bankAccountList.get(i).getBankName() + " " + BankDetailsActivity.bankAccountList.get(i).getAccountNo());
+                rbn.setText(bankAccountList.get(i).getBankName() + " " + bankAccountList.get(i).getAccountNo());
                 rbn.setTextSize(16);
                 rbn.setPadding(0, 25, 0, 25);
                 rgp.addView(rbn);

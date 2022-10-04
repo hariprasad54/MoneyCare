@@ -15,9 +15,12 @@ import android.widget.Toast;
 import com.example.moneycare.apicontroler.API;
 import com.example.moneycare.apicontroler.PostRequest;
 import com.example.moneycare.model.ApprovalRequest;
+import com.example.moneycare.model.ApprovalWithdrawRequest;
 import com.example.moneycare.model.BasicUserEntity;
 import com.example.moneycare.model.MemberSub;
+import com.example.moneycare.model.Transaction;
 import com.example.moneycare.model.UserAuthEntity;
+import com.example.moneycare.model.WithdrawRequest;
 
 import java.io.IOException;
 
@@ -31,6 +34,7 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
     private EditText feedBack;
     private Button btnSubmitStat;
     private String status;
+    private String response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,30 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Nothing Selected",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Submitted",Toast.LENGTH_SHORT).show();
+
+                    WithdrawRequest withdrawRequest = new WithdrawRequest();
+                    for (WithdrawRequest wr : WithdrawRequestsActivity.withdrawRequestList){
+                        if (wr.getUserId().equalsIgnoreCase(userEmail.getText().toString())){
+                            withdrawRequest = wr;
+                        }
+                    }
+
+                    try {
+                        response = PostRequest.sendRequest(API.APPROVEWITHDRAWREQUEST,new ApprovalWithdrawRequest(new UserAuthEntity().setUserName(userEmail.getText().toString()),new Transaction(withdrawRequest)).toString());
+                        System.out.println(response);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (response.equalsIgnoreCase("Invalid User")){
+                        Toast.makeText(getApplicationContext(),"Invalid User",Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if (response.equalsIgnoreCase("Success")) {
+                        WithdrawRequestsActivity.withdrawRequestList.remove(withdrawRequest);
+                        WithdrawRequestsActivity.adapter.notifyDataSetChanged();
+                        Toast.makeText(getApplicationContext(), "Submitted", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

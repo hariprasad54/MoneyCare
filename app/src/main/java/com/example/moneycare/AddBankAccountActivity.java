@@ -31,12 +31,12 @@ import java.io.IOException;
 
 public class AddBankAccountActivity extends AppCompatActivity {
 
-    private EditText bName,bAcNumber,bReAcNumber,bIfscCode,bAcHolderName;
+    private EditText bName,bAcNumber,bReAcNumber,bIfscCode,bAcHolderName,bUpiID;
     private TextView saveStaus;
     private Button btnAddAccount;
     private RadioButton rbtnTerms;
     private boolean termsStatus;
-    private String bankName,acNumber,reAcNumber,IfscCode, userEmail,acHolderName;
+    private String bankName,acNumber,reAcNumber,IfscCode, userEmail,acHolderName,userUpi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class AddBankAccountActivity extends AppCompatActivity {
         saveStaus = findViewById(R.id.status_add_account);
         rbtnTerms = findViewById(R.id.radio_terms_bankac);
         bAcHolderName = findViewById(R.id.et_name_in_add_account);
+        bUpiID = findViewById(R.id.et_upi_in_add_account);
 
 
         //terms and conditions
@@ -81,10 +82,11 @@ public class AddBankAccountActivity extends AppCompatActivity {
                 reAcNumber = bReAcNumber.getText().toString();
                 IfscCode = bIfscCode.getText().toString();
                 acHolderName = bAcHolderName.getText().toString();
+                userUpi = bUpiID.getText().toString();
 
                 if(validateDetails(bankName,acNumber,reAcNumber,IfscCode)){
 
-                    BankAccount bankAccount = new BankAccount(acNumber,bankName,IfscCode, acHolderName);
+                    BankAccount bankAccount = new BankAccount(acNumber,bankName,IfscCode, userUpi,acHolderName);
                     UserAuthEntity srcUser = new UserAuthEntity().setUserName(userEmail);
                     BankAccountRequest br = new BankAccountRequest(srcUser,bankAccount);
                     try {

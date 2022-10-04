@@ -110,11 +110,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="20dp"
-                                android:text="Referral Amount"
+                                android:text="Amount Earned"
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/textView19"
+                                android:id="@+id/tv_ref_amount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
@@ -143,7 +143,7 @@
                                 android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/textView21"
+                                android:id="@+id/tv_term_deposited"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"

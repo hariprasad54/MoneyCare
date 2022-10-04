@@ -16,5 +16,9 @@ public class API {
     public static final String RESETPASSWORD = "/resetpassword/";
     public static final String ADDRATING = "/addrating/";
     public static final String GETUSERRATING = "/getuserrating/";
+    public static final String GETWITHDRAWREQUESTS = "/getwithdrawrequests/";
+    public static final String APPROVEWITHDRAWREQUEST = "/approvalwithdrawrequest";
+    public static final String ADDWITHDRAWREQUEST = "/addwithdrawrequest";
+    public static final String GETUSERTRANSACTIONS = "/usertransactions/";
 
 }

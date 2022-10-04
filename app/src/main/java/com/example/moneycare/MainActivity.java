@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.example.moneycare.apicontroler.API;
 import com.example.moneycare.apicontroler.GetRequest;
+import com.example.moneycare.model.BankAccount;
 import com.example.moneycare.model.BasicUserEntity;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,11 +56,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
     private String userEmail;
-    private TextView tvEmail;
+    private TextView tvEmail,tvRefAmount, tvTermDeposited;
     private CircleImageView profilePic;
     private TextView welcome,lastLogin;
     private ImageButton btnLogout;
     private BasicUserEntity userProfile;
+    public static Integer totalEarnings = 0;
     private ImageButton cardAddUser,cardMyTeam,cardBankAccounts,cardProfile,cardAboutUs,cardRateUs,cardShareUs,cardVersion;
 
 
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         btnLogout = findViewById(R.id.btn_logout);
         welcome = findViewById(R.id.username_welcome);
         lastLogin = findViewById(R.id.last_login);
+        tvRefAmount = findViewById(R.id.tv_ref_amount);
+        tvTermDeposited = findViewById(R.id.tv_term_deposited);
 
 
         //quick links buttons
@@ -95,6 +99,14 @@ public class MainActivity extends AppCompatActivity {
 
         Intent loginDetails = getIntent();
         userEmail = loginDetails.getStringExtra("userEmail");
+
+        try {
+            totalEarnings = Integer.valueOf(GetRequest.sendRequest(API.GETTOTALAMOIUNT+ LoginActivity.userId));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        tvRefAmount.setText(String.valueOf(totalEarnings));
 
 
         try {
@@ -354,7 +366,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     }
 
     @Override
@@ -371,6 +382,8 @@ public class MainActivity extends AppCompatActivity {
                         //MainActivity.super.onBackPressed();
                     }
                 }).create().show();
+
+
     }
 
     @Override

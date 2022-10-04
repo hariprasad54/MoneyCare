@@ -124,6 +124,9 @@ public class LoginActivity extends AppCompatActivity {
                         in.putExtra("userEmail",strEmail);
                         startActivity(in);
                         finish();
+                    } else if(response.isEmpty()){
+                        Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+
                     }
 
                 }
