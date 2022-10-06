@@ -65,7 +65,7 @@ public class AmountWithdrawActivity extends AppCompatActivity {
         if (buttons > 0) {
             for (int i = 0; i < buttons; i++) {
                 rbn = new RadioButton(this);
-                rbn.setId(View.generateViewId());
+                rbn.setId(i);
                 rbn.setText(bankAccountList.get(i).getBankName() + " " + bankAccountList.get(i).getAccountNo());
                 rbn.setTextSize(16);
                 rbn.setPadding(0, 25, 0, 25);
@@ -98,7 +98,7 @@ public class AmountWithdrawActivity extends AppCompatActivity {
 
                 UserAuthEntity srcUser = new UserAuthEntity().setUserName(userId);
                 Transaction userTransaction = new Transaction(userId,trnDate,trnAmout);
-
+                userTransaction.setTrnUpiId(bankAccountList.get(rgp.getCheckedRadioButtonId()).getUpiId());
                 AddWithdrawRequest addWithdrawRequest = new AddWithdrawRequest(srcUser,userTransaction);
 
                 try {
@@ -112,6 +112,9 @@ public class AmountWithdrawActivity extends AppCompatActivity {
                 else if (response.equalsIgnoreCase("request added")){
                     Toast.makeText(AmountWithdrawActivity.this, "Withdraw Request Added", Toast.LENGTH_SHORT).show();
 
+                }
+                else if (response.equalsIgnoreCase("request limit exceeded")){
+                    Toast.makeText(AmountWithdrawActivity.this, "Withdraw Request Limit Exceeded", Toast.LENGTH_LONG).show();
                 }
 
             }

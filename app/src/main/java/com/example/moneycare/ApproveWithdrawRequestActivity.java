@@ -28,13 +28,14 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
 
     private RadioGroup statGroup;
     private RadioButton aproveStat;
-    private EditText userEmail;
+    private EditText userEmail,userUpiId;
     private EditText userTrnID;
     private TextView tvRejectionFeedback;
     private EditText feedBack;
     private Button btnSubmitStat;
-    private String status;
+    private String status,trnStatus;
     private String response;
+    private String upiId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +45,15 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
         statGroup = findViewById(R.id.radio_group_approve);
         userEmail = findViewById(R.id.et_userId);
         userTrnID = findViewById(R.id.et_Amount);
+        userUpiId = findViewById(R.id.et_UpiId);
         tvRejectionFeedback = findViewById(R.id.tv_rejection_feedback);
         feedBack = findViewById(R.id.et_multi_line_txt);
         btnSubmitStat = findViewById(R.id.btn_submit_status);
         Intent curIn = getIntent();
         userEmail.setText( curIn.getStringExtra("userId"));
         userTrnID.setText(curIn.getStringExtra("amount"));
-
+        upiId = curIn.getStringExtra("UPI");
+        userUpiId.setText(upiId);
         statGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -58,10 +61,12 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
 
                 status = aproveStat.getText().toString();
                 if (status.equals("Reject")){
+                    trnStatus = "Reject";
                     tvRejectionFeedback.setVisibility(View.VISIBLE);
                     feedBack.setVisibility(View.VISIBLE);
                 }
                 else if (status.equals("Approve")){
+                    trnStatus = "Approve";
                     tvRejectionFeedback.setVisibility(View.INVISIBLE);
                     feedBack.setVisibility(View.INVISIBLE);
                 }
@@ -72,6 +77,7 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int selectID = statGroup.getCheckedRadioButtonId();
+                System.out.println(aproveStat.getText().toString());
                 if (selectID == -1){
                     Toast.makeText(getApplicationContext(),"Nothing Selected",Toast.LENGTH_SHORT).show();
                 }
@@ -83,7 +89,8 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
                             withdrawRequest = wr;
                         }
                     }
-
+                    withdrawRequest.setStatus(trnStatus);
+                    withdrawRequest.setTrnUpiId(upiId);
                     try {
                         response = PostRequest.sendRequest(API.APPROVEWITHDRAWREQUEST,new ApprovalWithdrawRequest(new UserAuthEntity().setUserName(userEmail.getText().toString()),new Transaction(withdrawRequest)).toString());
                         System.out.println(response);
@@ -99,6 +106,8 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
                         WithdrawRequestsActivity.withdrawRequestList.remove(withdrawRequest);
                         WithdrawRequestsActivity.adapter.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(), "Submitted", Toast.LENGTH_SHORT).show();
+                        btnSubmitStat.setVisibility(View.INVISIBLE);
+                        statGroup.setEnabled(false);
                     }
                 }
             }

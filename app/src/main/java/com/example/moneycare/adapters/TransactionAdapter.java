@@ -1,5 +1,6 @@
 package com.example.moneycare.adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull TransactionAdapter.ViewHolder holder, int position) {
-        String tID = transactions.get(position).getTrnId();
+        String tID = transactions.get(position).getTrnStatus();
         String tEmail = transactions.get(position).getTrnEmail();
         String tDate = transactions.get(position).getTrnDate();
         String tAmount = transactions.get(position).getTrnAmount();
@@ -55,7 +56,15 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
 
         public void setData(String tID, String tEmail, String tDate, String tAmount) {
-            tvTrnID.setText(tID);
+
+            if ((tID.equalsIgnoreCase("approve"))) {
+                tvTrnID.setText(tID+"d");
+                tvTrnID.setTextColor(Color.rgb(0,128,0));
+            }
+            else if ((tID.equalsIgnoreCase("reject"))){
+                tvTrnID.setText(tID+"ed");
+                tvTrnID.setTextColor(Color.RED);
+            }
             tvTrnEmail.setText(tEmail);
             tvTrnDate.setText(tDate);
             tvTrnAmount.setText(tAmount);

@@ -72,10 +72,12 @@ public class WithdrawRequestAdapter extends RecyclerView.Adapter<WithdrawRequest
             WithdrawRequest withdrawRequest = withdrawRequestList.get(position);
             String userId = withdrawRequest.getUserId();
             String amount = withdrawRequest.getAmount();
+            String upiId = withdrawRequest.getTrnUpiId();
             Toast.makeText(view.getContext(), userId+" Clicked", Toast.LENGTH_SHORT).show();
             Intent aprovalIn = new Intent(view.getContext(), ApproveWithdrawRequestActivity.class);
             aprovalIn.putExtra("userId", userId);
             aprovalIn.putExtra("amount", amount);
+            aprovalIn.putExtra("UPI",upiId);
             view.getContext().startActivity(aprovalIn);
         }
     }

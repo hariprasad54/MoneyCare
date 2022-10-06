@@ -47,7 +47,7 @@ public class WithdrawRequestsActivity extends AppCompatActivity {
         }
 
         for(ApprovalWithdrawRequest ar : approvalWithdrawRequestList){
-                withdrawRequestList.add(new WithdrawRequest(ar.userTransaction.getTrnEmail(),ar.userTransaction.getTrnDate(),ar.userTransaction.getTrnAmount()));
+                withdrawRequestList.add(new WithdrawRequest(ar.userTransaction.getTrnEmail(),ar.userTransaction.getTrnDate(),ar.userTransaction.getTrnAmount(),ar.userTransaction.getTrnStatus(),ar.userTransaction.getTrnUpiId()));
         }
 
        // withdrawRequestList.add(new WithdrawRequest("user1","25/09/2022","1000"));

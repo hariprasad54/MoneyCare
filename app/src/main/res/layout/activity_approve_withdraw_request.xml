@@ -16,6 +16,16 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textViewUpi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="UPI ID"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_userId" />
 
     <TextView
         android:id="@+id/textView9"
@@ -26,7 +36,7 @@
         android:text="Amount"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_userId" />
+        app:layout_constraintTop_toBottomOf="@+id/et_UpiId" />
 
     <EditText
         android:id="@+id/et_Amount"
@@ -67,6 +77,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
+        tools:ignore="SpeakableTextPresentCheck" />
+    <EditText
+        android:id="@+id/et_UpiId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/et_custom"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:enabled="false"
+        android:focusable="false"
+        android:includeFontPadding="true"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
+        android:text="\@upi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUpi"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <RadioGroup

@@ -3,7 +3,7 @@ package com.example.moneycare.model;
 import com.example.moneycare.adapters.WithdrawRequestAdapter;
 
 public class Transaction {
-    public String trnId,trnEmail,trnDate,trnAmount;
+    public String trnId,trnEmail,trnDate,trnAmount,trnStatus,trnUpiId;
 
     public Transaction(String trnId, String trnEmail, String trnDate, String trnAmount) {
         this.trnId = trnId;
@@ -18,6 +18,10 @@ public class Transaction {
         this.trnAmount = trnAmount;
     }
 
+
+
+
+
     public Transaction() {
     }
 
@@ -25,6 +29,8 @@ public class Transaction {
         this.trnEmail = withdrawRequest.getUserId();
         this.trnDate = withdrawRequest.getDate();
         this.trnAmount = withdrawRequest.getAmount();
+        this.trnStatus = withdrawRequest.getStatus();
+        this.trnUpiId = withdrawRequest.getTrnUpiId();
     }
 
     public String getTrnId() {
@@ -59,6 +65,21 @@ public class Transaction {
         this.trnAmount = trnAmount;
     }
 
+    public String getTrnStatus() {
+        return trnStatus;
+    }
+
+    public void setTrnStatus(String trnStatus) {
+        this.trnStatus = trnStatus;
+    }
+
+    public String getTrnUpiId() {
+        return trnUpiId;
+    }
+
+    public void setTrnUpiId(String trnUpiId) {
+        this.trnUpiId = trnUpiId;
+    }
 
     @Override
     public String toString() {
@@ -67,6 +88,8 @@ public class Transaction {
         sb.append(", \"trnEmail\": \"").append(trnEmail).append('\"');
         sb.append(", \"trnDate\": \"").append(trnDate).append('\"');
         sb.append(", \"trnAmount\": \"").append(trnAmount).append('\"');
+        sb.append(", \"trnStatus\": \"").append(trnStatus).append('\"');
+        sb.append(", \"trnUpiId\": \"").append(trnUpiId).append('\"');
         sb.append("}");
 
         return sb.toString();
