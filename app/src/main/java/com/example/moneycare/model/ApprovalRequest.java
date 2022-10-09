@@ -6,10 +6,41 @@ import androidx.annotation.Nullable;
 public class ApprovalRequest {
     public UserAuthEntity srcUser;
     public BasicUserEntity targetUser;
+    public int amount;
+
+    public UserAuthEntity getSrcUser() {
+        return srcUser;
+    }
+
+    public void setSrcUser(UserAuthEntity srcUser) {
+        this.srcUser = srcUser;
+    }
+
+    public BasicUserEntity getTargetUser() {
+        return targetUser;
+    }
+
+    public void setTargetUser(BasicUserEntity targetUser) {
+        this.targetUser = targetUser;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public ApprovalRequest(UserAuthEntity srcUser, BasicUserEntity targetUser) {
         this.srcUser = srcUser;
         this.targetUser = targetUser;
+    }
+
+    public ApprovalRequest(UserAuthEntity srcUser, BasicUserEntity targetUser, int amount) {
+        this.srcUser = srcUser;
+        this.targetUser = targetUser;
+        this.amount = amount;
     }
 
     public ApprovalRequest() {
@@ -26,12 +57,12 @@ public class ApprovalRequest {
                 .equals(((ApprovalRequest)this).srcUser.getUserName());
     }
 
-
     @Override
     public String toString() {
         return "{"
-                + "\"srcUser\":" + srcUser.toString()
-                + ", \"targetUser\":" + targetUser.toString()
+                + "\"srcUser\":" + srcUser
+                + ", \"targetUser\":" + targetUser
+                + ", \"amount\":\"" + amount + "\""
                 + "}";
     }
 }

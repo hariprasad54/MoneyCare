@@ -1,6 +1,12 @@
-1. Edit Bank Account (Two bank accounts showing both old one and edited one) - done
-2. Super user need to be removed for empty sub users - done
-3. After Approving Again coming when i open that super user - done
-4. Admin added users are showing in Your Team - done
-5. User first name and lastname getting null after approving - done
-6.
+    /**
+     *  1. user1: totlAmount=200, curAmount =100
+     *  user5 added by user1
+     *  user8 added by user1
+     *  user10 added by user1
+     *  user12 added by user1
+     *
+     *  2. In approve pending request add a text field to hold referral amount
+     *
+     *  3. Admin should be able
+     *  to see all userId, user's curAmount, totalAMount, Team, BankDetails(UPI ID)
+     */

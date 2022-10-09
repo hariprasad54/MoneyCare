@@ -1,5 +1,7 @@
 package com.example.moneycare;
 
+import static com.example.moneycare.Constants.AMOUNT;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -34,6 +36,7 @@ public class AprovalOrRejectedActivity extends AppCompatActivity {
     private EditText feedBack;
     private Button btnSubmitStat;
     private String status;
+    private int amount;
 
     /**
      * TODO Upon approval it should remove the element but it is still showing in the list
@@ -53,6 +56,7 @@ public class AprovalOrRejectedActivity extends AppCompatActivity {
         Intent curIn = getIntent();
         userEmail.setText( curIn.getStringExtra("userEmail"));
         userTrnID.setText(curIn.getStringExtra("transactionId"));
+        amount = AMOUNT;
         statGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -90,7 +94,7 @@ public class AprovalOrRejectedActivity extends AppCompatActivity {
                     try {
                         PostRequest.sendRequest(API.APPROVEUSER,new ApprovalRequest(new UserAuthEntity()
                                 .setUserName(AdminApprovalSubActivity.srcUsrerId),
-                                new BasicUserEntity(curUser)).toString());
+                                new BasicUserEntity(curUser), amount).toString());
                         AdminApprovalSubActivity.memberSubList.remove(curUser);
                         //AdminApprovalSuperActivity.memberSuperList.remove(AdminApprovalSubActivity.srcUsrerId);
                         AdminApprovalSubActivity.subAdapter.notifyDataSetChanged();

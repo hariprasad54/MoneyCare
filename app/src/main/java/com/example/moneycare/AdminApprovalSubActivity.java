@@ -1,5 +1,7 @@
 package com.example.moneycare;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -10,16 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.moneycare.adapters.MemberSubAdapter;
 import com.example.moneycare.adapters.MemberSuperAdapter;
 import com.example.moneycare.adapters.TeamAdapter;
+import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.GetRequest;
 import com.example.moneycare.model.ApprovalRequest;
 import com.example.moneycare.model.MemberSub;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class AdminApprovalSubActivity extends AppCompatActivity {
@@ -73,6 +82,11 @@ public class AdminApprovalSubActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.refresh_sub:
+                try {
+                    refreshList();
+                } catch (IOException e) {
+                    Log.i(TAG, "refresh failed: "+ e.getMessage());
+                }
                 break;
             case android.R.id.home:
                 this.finish();
@@ -84,6 +98,13 @@ public class AdminApprovalSubActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void refreshList() throws IOException {
+        AdminApprovalSuperActivity.memberSuperList.clear();
+        List<ApprovalRequest> tmpList = new ObjectMapper().readValue(GetRequest.sendRequest(API.GETPENDINGAPPROVALS+LoginActivity.adminUserId), new TypeReference<List<ApprovalRequest>>(){});
+        AdminApprovalSuperActivity.memberSuperList.addAll(tmpList);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
