@@ -25,6 +25,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private EditText etPass,etRePass;
     private Button btnUpdatePass;
     private String userId;
+    private String fromIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         btnUpdatePass = findViewById(R.id.btnUpdatePassword);
 
         userId = LoginActivity.userId;
+
+        Intent in = getIntent();
+        fromIntent = in.getStringExtra("from");
 
         btnUpdatePass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +62,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             Toast.makeText(ChangePasswordActivity.this, "Password Changed!!", Toast.LENGTH_SHORT).show();
                             Intent in = new Intent(ChangePasswordActivity.this,LoginActivity.class);
                             startActivity(in);
+                            finishActivity(0);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -81,11 +86,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }*/
 
-   /* @Override
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }*/
+        if (fromIntent.equalsIgnoreCase("login")) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+    }
 }

@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moneycare.apicontroler.API;
+import com.example.moneycare.apicontroler.GetRequest;
 import com.example.moneycare.apicontroler.PostRequest;
 import com.example.moneycare.model.LoginType;
 import com.example.moneycare.model.UserAuthEntity;
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     public static String userId;
     public static String adminUserId;
     private String strEmail,pass;
+    public String res="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                 LayoutInflater layoutInflater = getLayoutInflater();
                 final View viewDialog = layoutInflater.inflate(R.layout.email_dialog, null);
                 AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
-                alert.setTitle("Enter Email");
+                alert.setTitle("Enter Mobile Number");
                 alert.setView(viewDialog);
 
                 EditText etEmail = viewDialog.findViewById(R.id.et_email_dialog);
@@ -150,22 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                 alert.setPositiveButton("Next", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
-                        String strEmailFromD = etEmail.getText().toString();
-                        if (!(isEmail(strEmailFromD))|| isEmpty(strEmailFromD)){
-                              Toast.makeText(getApplicationContext(),"Invalid Email or Email Empty",Toast.LENGTH_LONG).show();
-                            etEmail.setError("Invalid Email");
 
-                        }
-                        else {
-                            //check for the email in DB
-                            //if exists then otp validation
-                            Intent forgotPassIn = new Intent(LoginActivity.this,ChangePasswordActivity.class);
-                            forgotPassIn.putExtra("from","change_pass");
-                            startActivity(forgotPassIn);
-                            finish();
-                            //if not exists uncomment below line
-                            //etEmail.setError("Email Not found")
-                        }
 
                     }
                 });
@@ -177,7 +164,53 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-                alert.create().show();
+                final AlertDialog dialog = alert.create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        Boolean wantToCloseDialog = false;
+
+                        String strEmailFromD = etEmail.getText().toString();
+                        if (isEmpty(strEmailFromD) || strEmailFromD.length()!=10){
+                            //Toast.makeText(getApplicationContext(),"Invalid Email or Email Empty",Toast.LENGTH_LONG).show();
+                            etEmail.setError("Invalid Number");
+
+                        }
+                        else {
+                            //check for the email in DB
+
+                            try {
+                                res = GetRequest.sendRequest(API.CHECKUSER+strEmailFromD);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            //if exists then otp validation
+                            if (res.equalsIgnoreCase("found")) {
+                                Intent forgotPassIn = new Intent(LoginActivity.this, ChangePasswordActivity.class);
+                                forgotPassIn.putExtra("from", "login");
+                                forgotPassIn.putExtra("userEmail",strEmailFromD);
+                                userId = strEmailFromD;
+                                startActivity(forgotPassIn);
+                                finishActivity(1);
+                            }else {
+                                //if not exists uncomment below line
+                                etEmail.setError("User Not found");
+                                //Toast.makeText(getApplicationContext(),"User Not found",Toast.LENGTH_LONG).show();
+
+                            }
+                        }
+
+                        if (res.equalsIgnoreCase("Found"))
+                            wantToCloseDialog = true;
+                        //Do stuff, possibly set wantToCloseDialog to true then...
+                        if(wantToCloseDialog)
+                            dialog.dismiss();
+                        //else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.
+                    }
+                });
             }
         });
 

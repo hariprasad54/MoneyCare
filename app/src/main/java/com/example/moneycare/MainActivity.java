@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView welcome,lastLogin;
     private ImageButton btnLogout;
     private BasicUserEntity userProfile;
-    public static Integer totalEarnings = 0;
+    public static List<Integer> totalEarningsList;
+    public static int totalEarnings;
+    public static int availBalance;
     private ImageButton cardAddUser,cardMyTeam,cardBankAccounts,cardProfile,cardAboutUs,cardRateUs,cardShareUs,cardVersion;
 
 
@@ -102,14 +104,15 @@ public class MainActivity extends AppCompatActivity {
 
         Intent loginDetails = getIntent();
         userEmail = loginDetails.getStringExtra("userEmail");
-
+        totalEarningsList = new ArrayList<>();
         try {
-            totalEarnings = Integer.valueOf(GetRequest.sendRequest(API.GETTOTALAMOIUNT+ LoginActivity.userId));
+            totalEarningsList = new ObjectMapper().readValue(GetRequest.sendRequest(API.GETTOTALAMOIUNT + LoginActivity.userId), new TypeReference<List<Integer>>(){});
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        tvRefAmount.setText(String.valueOf(totalEarnings));
+        totalEarnings = totalEarningsList.get(0);
+        availBalance = totalEarningsList.get(1);
+        tvRefAmount.setText("₹ "+String.valueOf(totalEarnings));
 
 
         try {

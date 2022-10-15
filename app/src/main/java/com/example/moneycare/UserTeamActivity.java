@@ -38,7 +38,11 @@ public class UserTeamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_team);
 
+        Intent userIn = getIntent();
         userEmail = LoginActivity.userId;
+        if (userEmail.equalsIgnoreCase("admin")){
+            userEmail = userIn.getStringExtra("userEmail");
+        }
         try {
             teamMemberList = new ArrayList<>();
             Set<BasicUserEntity> set = new HashSet<>( new ObjectMapper()

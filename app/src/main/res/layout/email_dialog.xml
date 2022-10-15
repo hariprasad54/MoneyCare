@@ -12,8 +12,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/et_custom"
-        android:hint="@string/e_mail_or_phone"
-        android:inputType="textEmailAddress"
+        android:hint="@string/phone"
+        android:inputType="phone"
         android:padding="15dp"
         android:textSize="15sp" />
 

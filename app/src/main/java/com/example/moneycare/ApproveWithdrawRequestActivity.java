@@ -102,12 +102,13 @@ public class ApproveWithdrawRequestActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Invalid User",Toast.LENGTH_SHORT).show();
 
                     }
-                    else if (response.equalsIgnoreCase("Success")) {
+                    else if (response.equalsIgnoreCase("Success") ||response.equalsIgnoreCase("Insuficient") ) {
                         WithdrawRequestsActivity.withdrawRequestList.remove(withdrawRequest);
                         WithdrawRequestsActivity.adapter.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(), "Submitted", Toast.LENGTH_SHORT).show();
                         btnSubmitStat.setVisibility(View.INVISIBLE);
                         statGroup.setEnabled(false);
+                        //startActivity(new Intent(getApplicationContext(),WithdrawRequestsActivity.class));
                     }
                 }
             }
