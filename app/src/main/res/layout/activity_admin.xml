@@ -94,7 +94,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="20dp"
-                        android:columnCount="1"
+                        android:columnCount="2"
                         android:scrollbars="vertical">
 
                         <androidx.cardview.widget.CardView
@@ -192,6 +192,37 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/card_all_users"
+                            android:layout_width="150dp"
+                            android:layout_height="140dp"
+                            android:layout_columnWeight="1"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
+                            app:cardCornerRadius="35dp">
+
+                            <ImageButton
+                                android:id="@+id/imb_all_users"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="0dp"
+                                android:background="@drawable/ic_outline_groups_24" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="20dp"
+                                android:text="All Users"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/card_share_us"
                             android:layout_width="150dp"
                             android:layout_height="140dp"
@@ -200,6 +231,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
+                            android:layout_columnSpan="2"
                             app:cardCornerRadius="35dp">
 
                             <ImageButton
@@ -222,69 +254,42 @@
                                 android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
+
+
+
                         <!--
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_about_us"
-                            android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:layout_columnWeight="1"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="35dp">
+                     <androidx.cardview.widget.CardView
+                         android:id="@+id/version_info"
+                         android:layout_width="150dp"
+                         android:layout_height="140dp"
+                         android:layout_columnWeight="1"
+                         android:layout_marginStart="5dp"
+                         android:layout_marginTop="5dp"
+                         android:layout_marginEnd="5dp"
+                         android:layout_marginBottom="5dp"
+                         app:cardCornerRadius="35dp">
 
-                            <ImageButton
-                                android:id="@+id/imb_about_us"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="0dp"
-                                android:background="@drawable/home_info" />
+                         <ImageButton
+                             android:id="@+id/imb_version"
+                             android:layout_width="60dp"
+                             android:layout_height="60dp"
+                             android:layout_gravity="center"
+                             android:layout_marginTop="10dp"
+                             android:layout_marginEnd="0dp"
+                             android:background="@drawable/ic_outline_perm_device_information_24" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:text="About us"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </androidx.cardview.widget.CardView>
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/version_info"
-                            android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:layout_columnWeight="1"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="5dp"
-                            app:cardCornerRadius="35dp">
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_gravity="center_horizontal"
+                             android:layout_marginTop="20dp"
+                             android:text="Version"
+                             android:textColor="@color/black"
+                             android:textSize="16sp"
+                             android:textStyle="bold" />
+                     </androidx.cardview.widget.CardView>
 
-                            <ImageButton
-                                android:id="@+id/imb_version"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginEnd="0dp"
-                                android:background="@drawable/ic_outline_perm_device_information_24" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:text="Version"
-                                android:textColor="@color/black"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </androidx.cardview.widget.CardView>
-
-                        -->
+                     -->
 
                     </GridLayout>
                 </ScrollView>

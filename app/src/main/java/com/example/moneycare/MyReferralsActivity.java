@@ -44,7 +44,7 @@ public class  MyReferralsActivity extends AppCompatActivity {
         btnWithdraw = findViewById(R.id.btn_withdraw);
         btnDeposit = findViewById(R.id.btn_deposit);
 
-        refBal.setText(String.valueOf(MainActivity.totalEarnings));
+        refBal.setText("₹ "+String.valueOf(MainActivity.availBalance));
 
         transactionList = new ArrayList<Transaction>();
         try {

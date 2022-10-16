@@ -34,7 +34,7 @@
                 android:layout_marginEnd="152dp"
                 android:layout_marginBottom="5dp"
                 android:paddingTop="5dp"
-                android:text="Amount Earned"
+                android:text="Amount Available"
                 android:textSize="16sp" />
 
             <TextView

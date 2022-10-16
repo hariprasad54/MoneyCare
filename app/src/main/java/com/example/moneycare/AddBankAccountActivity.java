@@ -93,6 +93,7 @@ public class AddBankAccountActivity extends AppCompatActivity {
                        if(!PostRequest.sendRequest(ADDBANKACCOUNT, br.toString()).equals(EMPTY_STR)){
                         saveStaus.setText("Account Details Saved!!");
                         saveStaus.setVisibility(View.VISIBLE);
+                           //startActivity(new Intent(getApplicationContext(),BankDetailsActivity.class));
                        }
                        else {
                            saveStaus.setText("Account Details Couldn't be Saved!!");

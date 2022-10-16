@@ -29,7 +29,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="-2dp"
         android:background="@drawable/et_custom"
-        android:hint="@string/e_mail_or_phone"
+        android:hint="@string/phone"
         android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textSize="15sp" />

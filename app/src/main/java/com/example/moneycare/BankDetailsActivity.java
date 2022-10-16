@@ -43,6 +43,9 @@ public class BankDetailsActivity extends AppCompatActivity {
         accounts = findViewById(R.id.your_accounts);
         Intent userDetails = getIntent();
         userEmail = LoginActivity.userId;
+        if (userEmail.equalsIgnoreCase("admin")){
+            userEmail = userDetails.getStringExtra("userEmail");
+        }
         fab = findViewById(R.id.btn_add_bankac);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

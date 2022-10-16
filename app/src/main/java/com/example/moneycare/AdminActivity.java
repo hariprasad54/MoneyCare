@@ -26,7 +26,7 @@ import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private ImageButton cardAddUser,cardPendingApprovals,cardPendingWithdraws,cardAboutUs,cardShareUs,cardVersion;
+    private ImageButton cardAddUser,cardPendingApprovals,cardPendingWithdraws,cardAllUsers,cardShareUs,cardVersion;
     private ImageButton btnLogout;
     private  AlertDialog.Builder builder;
     private TextView lastLogin;
@@ -42,13 +42,22 @@ public class AdminActivity extends AppCompatActivity {
         cardAddUser = findViewById(R.id.imb_add_user);
         cardPendingApprovals = findViewById(R.id.imb_pending_approvals);
         cardPendingWithdraws = findViewById(R.id.imb_pending_withdraws);
-       // cardAboutUs = findViewById(R.id.imb_about_us);
+        cardAllUsers = findViewById(R.id.imb_all_users);
         cardShareUs = findViewById(R.id.imb_share_us);
         //cardVersion = findViewById(R.id.imb_version);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         lastLogin.setText(String.format("Login Time: %s", dateFormat.format(date)));
+
+        cardAllUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("All users Clicked..");
+                Intent intent = new Intent(AdminActivity.this,DisplayAllUsersActivity.class);
+                startActivity(intent);
+            }
+        });
 
         cardPendingApprovals.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +115,7 @@ public class AdminActivity extends AppCompatActivity {
                             intent.putExtra("AppName", resInfo.loadLabel(pm).toString());
                             intent.setAction(Intent.ACTION_SEND);
                             intent.setType("text/plain");
-                            intent.putExtra(Intent.EXTRA_TEXT, "https://website.com/");
+                            intent.putExtra(Intent.EXTRA_TEXT, "Share App");
                             intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_text));
                             intent.setPackage(packageName);
                             targetShareIntents.add(intent);

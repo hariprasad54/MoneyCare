@@ -86,35 +86,34 @@ public class AmountWithdrawActivity extends AppCompatActivity {
                 Date date = new Date();
                 trnDate = dateFormat.format(date);
                 trnAmout = etAmountToWithdraw.getText().toString();
-                totalAmount = MainActivity.totalEarnings;
+                totalAmount = MainActivity.availBalance;
 
-                /*if (Integer.parseInt(trnAmout) > totalAmount){
+                if (Integer.parseInt(trnAmout) > totalAmount){
                     etAmountToWithdraw.setError("Insufficient Amount");
                     Toast.makeText(AmountWithdrawActivity.this, "Insufficient Amount", Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else {
 
-                }*/
+                    UserAuthEntity srcUser = new UserAuthEntity().setUserName(userId);
+                    Transaction userTransaction = new Transaction(userId,trnDate,trnAmout);
+                    userTransaction.setTrnUpiId(bankAccountList.get(rgp.getCheckedRadioButtonId()).getUpiId());
+                    AddWithdrawRequest addWithdrawRequest = new AddWithdrawRequest(srcUser,userTransaction);
 
-                UserAuthEntity srcUser = new UserAuthEntity().setUserName(userId);
-                Transaction userTransaction = new Transaction(userId,trnDate,trnAmout);
-                userTransaction.setTrnUpiId(bankAccountList.get(rgp.getCheckedRadioButtonId()).getUpiId());
-                AddWithdrawRequest addWithdrawRequest = new AddWithdrawRequest(srcUser,userTransaction);
+                    try {
+                        response = PostRequest.sendRequest(API.ADDWITHDRAWREQUEST,addWithdrawRequest.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    if (response.equalsIgnoreCase("Invalid User")){
+                        Toast.makeText(AmountWithdrawActivity.this, "Invalid User", Toast.LENGTH_SHORT).show();
+                    }
+                    else if (response.equalsIgnoreCase("request added")){
+                        Toast.makeText(AmountWithdrawActivity.this, "Withdraw Request Added", Toast.LENGTH_SHORT).show();
 
-                try {
-                    response = PostRequest.sendRequest(API.ADDWITHDRAWREQUEST,addWithdrawRequest.toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                if (response.equalsIgnoreCase("Invalid User")){
-                    Toast.makeText(AmountWithdrawActivity.this, "Invalid User", Toast.LENGTH_SHORT).show();
-                }
-                else if (response.equalsIgnoreCase("request added")){
-                    Toast.makeText(AmountWithdrawActivity.this, "Withdraw Request Added", Toast.LENGTH_SHORT).show();
-
-                }
-                else if (response.equalsIgnoreCase("request limit exceeded")){
-                    Toast.makeText(AmountWithdrawActivity.this, "Withdraw Request Limit Exceeded", Toast.LENGTH_LONG).show();
+                    }
+                    else if (response.equalsIgnoreCase("request limit exceeded")){
+                        Toast.makeText(AmountWithdrawActivity.this, "Withdraw Request Limit Exceeded", Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }
