@@ -25,6 +25,7 @@ public class PostRequest {
 
         urlConnection.setRequestMethod("POST");
         urlConnection.setRequestProperty("content-type", "application/json");
+        urlConnection.setDoOutput(true);
         OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
         writer.write(body);

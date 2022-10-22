@@ -43,7 +43,8 @@ public class  MyReferralsActivity extends AppCompatActivity {
         depBal = findViewById(R.id.amount_dep_total);
         btnWithdraw = findViewById(R.id.btn_withdraw);
         btnDeposit = findViewById(R.id.btn_deposit);
-
+        btnDeposit.setVisibility(View.INVISIBLE);
+        depBal.setText("₹ "+ String.valueOf(MainActivity.termDeposited));
         refBal.setText("₹ "+String.valueOf(MainActivity.availBalance));
 
         transactionList = new ArrayList<Transaction>();

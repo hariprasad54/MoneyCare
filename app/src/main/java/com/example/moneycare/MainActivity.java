@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public static List<Integer> totalEarningsList;
     public static int totalEarnings;
     public static int availBalance;
+    public static int termDeposited;
     private ImageButton cardAddUser,cardMyTeam,cardBankAccounts,cardProfile,cardAboutUs,cardRateUs,cardShareUs,cardVersion;
 
 
@@ -114,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
         availBalance = totalEarningsList.get(1);
         tvRefAmount.setText("₹ "+String.valueOf(totalEarnings));
 
+        try {
+            termDeposited = new ObjectMapper().readValue(GetRequest.sendRequest(API.GETTERM + LoginActivity.userId), new TypeReference<Integer>(){});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        tvTermDeposited.setText("₹ " + String.valueOf(termDeposited));
 
         try {
             userProfile =  new ObjectMapper().readValue(GetRequest.sendRequest(API.GETUSERDETAILS+LoginActivity.userId), new TypeReference<BasicUserEntity>(){});

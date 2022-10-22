@@ -22,5 +22,6 @@ public class API {
     public static final String GETUSERTRANSACTIONS = "/usertransactions/";
     public static final String GETALLUSERDETAILS = "/displayallusers/";
     public static final String CHECKUSER = "/checkuser/";
+    public static final String GETTERM = "/getterm/";
 
 }
